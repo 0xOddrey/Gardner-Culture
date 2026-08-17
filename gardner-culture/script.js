@@ -1,0 +1,558 @@
+const menuButton = document.querySelector('.menu-button');
+const nav = document.querySelector('.site-nav');
+
+const pages = [
+  { id: 'home', label: 'Gardner Culture' },
+  { id: 'mission-vision', label: 'Mission & vision', category: 'Foundations', description: 'Our mission defines the learning experience we build every day. Our vision defines the capable, confident, and holistically successful young adults we hope to graduate.' },
+  { id: 'believe', label: 'What we believe', category: 'Foundations', description: 'Children bring ideas, experiences, questions, theories, and abilities into the classroom. Our responsibility is to create the conditions in which they can explore, communicate, collaborate, and grow.' },
+  { id: 'teach', label: 'How we teach', category: 'Practice', description: 'Gardner educators observe, listen, question, support, and create opportunities for discovery. We guide children towards confident, independent choices.' },
+  { id: 'prepare-learning', label: 'How we prepare for learning', category: 'Practice', description: 'Learning begins before a lesson starts. We prepare spaces that help children feel capable, curious, safe, and ready to participate.' },
+  { id: 'show-up', label: 'How we show up', category: 'Practice', description: 'Students, colleagues, and families depend on us. Professionalism at Gardner is active, prepared, reliable, and ready for the work of learning.' },
+  { id: 'relationships', label: 'Relationships', category: 'Community', description: 'School, family, and child are on the same team. Partnership requires trust, consistency, communication, and respect.' },
+  { id: 'care', label: 'How we care', category: 'Community', description: 'When children are in our care, they have our attention. Supervision is active, present, thoughtful, and responsible.' },
+  { id: 'practice', label: 'Practice library', category: 'Tools', description: 'Realistic situations that turn Gardner Culture into practical, consistent decisions.' },
+  { id: 'gardner-test', label: 'The Gardner Test', category: 'Tools', description: 'Policies cannot anticipate every situation. When you are unsure, begin with the child.' },
+  { id: 'policies', label: 'Staff policies', category: 'Policies', description: 'Clear, formal standards for safe, professional, and responsible practice at Gardner Academy.' },
+];
+
+const policies = [
+  {
+    id: 'attendance', code: 'GA-HR-01', title: 'Attendance & Reliability',
+    summary: 'Standards for punctuality, absence reporting, authorised leave, accurate records, and dependable handover.',
+    authority: 'Labour Act 11 of 2007 sections 23-27; Employment Contract clauses 5 and 7',
+    culture: { label: 'How we show up', href: '?page=show-up' },
+    sections: [
+      ['Purpose', ['Reliable attendance protects learning time, supervision, team planning, and the safe operation of the school. This policy sets the minimum attendance and communication standards for Gardner staff.']],
+      ['Required practice', ['Employees must:', ['Arrive on time, ready to work, and report to the assigned location.', 'Follow the approved clock-in, register, or attendance process accurately.', 'Notify the employer or immediate supervisor as soon as possible when illness, emergency, or delay may affect attendance.', 'For sick leave, give at least two hours’ notice where reasonably possible. An emergency or genuine inability to notify in advance must be explained as soon as reasonably possible and will be considered on its facts.', 'Remain on duty until responsibility has been properly handed over or permission to leave has been given.', 'Complete assigned work and routine deadlines, or raise a barrier early enough for support to be arranged.']]],
+      ['Leave and absence', ['An employee’s annual leave is taken during official school holidays in accordance with the school calendar. Leave will normally not be taken during a school term unless prior written approval has been received. Employees must follow the applicable leave-request procedure, provide the required notice and supporting documents, and must not assume that a submitted or discussed request has been approved.']],
+      ['Records and honesty', ['Attendance and time records must be complete and truthful. Staff may not ask another person to clock in, sign, or record attendance on their behalf. Falsifying a record is a serious breach of trust.']],
+      ['Accountability', ['Repeated lateness, missed notification, unauthorised absence, unreliable handover, or failure to follow the leave-request procedure may result in coaching or action under the applicable HR process. Employees must provide honest information and participate in any attendance follow-up required by the school. Genuine illness will be treated with care and confidentiality.']]
+    ]
+  },
+  {
+    id: 'working-hours', code: 'GA-HR-02', title: 'Working Hours, TOIL & Leave Requests',
+    summary: 'Normal hours, time off in lieu, leave categories, supporting documents, and the written approval process.',
+    authority: 'Employment Contract clauses 5 and 7 and Annexure C; Labour Act 11 of 2007 sections 23-27; Labour General Regulations, 2008 regulation 5',
+    culture: { label: 'How we show up', href: '?page=show-up' },
+    sections: [
+      ['Purpose', ['This policy records the school’s contractual approach to overtime, school functions, and compensation through paid time off in lieu.']],
+      ['Normal working hours', ['Normal working hours are 45 hours per week, excluding a one-hour unpaid lunch break per working day.']],
+      ['School functions and additional hours', ['Because of the nature of school operations, employees may be required to participate in school activities, meetings, events, and functions outside normal working hours, including Saturdays. These activities are an inherent and reasonable requirement of employment in a school environment.']],
+      ['Time off in lieu', ['When an employee works additional hours beyond normal working hours, the employer and employee agree that those hours will be compensated through paid time off during school holidays or another agreed period. Time off in lieu must be equivalent to or greater than the additional hours worked and must be scheduled so that school operations are not disrupted. This arrangement is agreed in lieu of overtime pay, provided that statutory minimum requirements under Namibian law are met.']],
+      ['Reasonable overtime', ['The employee acknowledges that the salary paid includes reasonable overtime inherent in the nature of school operations.']],
+      ['Recording additional hours', ['Additional hours and the corresponding paid time off must be recorded and approved through the school’s process so that the arrangement is applied accurately and consistently.']],
+      ['How to request leave', ['Except where an emergency makes advance application impossible, an employee must:', ['Submit the approved written leave request to the Head of Department or designated manager as early as reasonably possible.', 'State the leave category, dates, departure and return times, reason, and any effect on lessons, supervision, deadlines, or assigned duties.', 'Attach the supporting documents required for that leave category.', 'Prepare a suitable handover or coverage plan when requested.', 'Wait for written approval before making commitments or leaving duty. A verbal discussion, submitted form, unanswered message, or assumption does not amount to approval. If written approval has not been received, the request must be treated as not approved and the leave must not be taken.'], 'In a genuine emergency, the employee must notify the Head of Department or designated manager as soon as reasonably possible and complete the required written process and supporting documents promptly afterwards. This procedure does not remove any statutory leave entitlement.']],
+      ['Approval considerations', ['Employees should understand that discretionary leave requests may be considered against available leave, the reason and notice given, supporting documents, student safety and supervision, staffing and timetable needs, deadlines, operational impact, previous arrangements, and available coverage. A request is approved only when the employee receives written confirmation.']],
+      ['Statutory leave categories', ['Annual leave, sick leave, compassionate leave, maternity leave, and extended maternity leave are administered according to the Labour Act and the relevant Gardner policy. The supporting-document and notice rules for each category continue to apply. Study leave and special-circumstance leave are additional Gardner arrangements and do not replace or reduce a statutory entitlement.']],
+      ['Study leave', ['Gardner may provide reasonable paid study leave where the approved programme, qualification, module, assessment, or examination is relevant to the employee’s current role or reasonably supports their development and future contribution at Gardner.', 'Study leave eligibility must be approved before the course or programme is relied upon for paid study leave. Employees should discuss the proposed study with Administration before enrolment where possible. Approval of a programme does not automatically approve every requested date.', 'As soon as the employee receives an examination or compulsory-assessment schedule, the employee must submit the leave request with confirmation from the recognised education or training institution showing enrolment, the assessment or examination, and its date and time. The employee must wait for written confirmation identifying the approved paid study-leave period. Study leave that has not been approved in writing must not be taken as paid study leave.']],
+      ['Compassionate and bereavement leave', ['Compassionate leave is available in accordance with section 25 of the Labour Act for death or serious illness in the family. Employees must follow the prescribed application process and provide the required supporting evidence.', 'For bereavement involving a spouse, child, parent, or sibling, the employee must provide reasonable proof of the death and relationship. Where advance application is impossible, the employee must make reasonable efforts to notify the school of the absence and intended duration, then submit the application and evidence promptly on return.']],
+      ['Special-circumstance leave', ['Leave for an important personal circumstance that does not fall within another approved leave category must be requested in writing and approved before it is taken. The request should explain the circumstances, dates, duration, supporting information, and proposed handover. The written decision will state whether the time is treated as paid special leave, annual leave, unpaid leave, time off in lieu, or another approved arrangement. If approval is not given in writing, the leave is not approved and must not be taken, except where an emergency makes advance approval impossible.']],
+      ['Partial-day leave and appointments', ['The same written request and approval rules apply when an employee wishes to arrive late, leave early, or leave campus temporarily for an appointment or personal matter. The request must state the departure and expected return time and explain how students, lessons, supervision, meetings, and duties will be covered. Partial-day leave is at the discretion of the Head of Department or designated manager, subject to any applicable statutory right.', 'The decision may consider urgency, notice, frequency, available leave or time off in lieu, staffing, safeguarding, timetable disruption, operational needs, and the proposed handover. The employee must not leave campus until written approval has been received, must follow the required sign-out and sign-in process, and must notify the approver promptly if the return time changes.']]
+    ]
+  },
+  {
+    id: 'sick-leave', code: 'GA-HR-03', title: 'Sick Leave & Prevention of Abuse',
+    summary: 'Sick-leave entitlement, notification, medical certificates, confidentiality, and fair action where misuse is suspected.',
+    authority: 'Labour Act 11 of 2007 section 24; Employment Contract clause 7.3 and Annexure D',
+    culture: { label: 'How we show up', href: '?page=show-up' },
+    sections: [
+      ['Purpose and entitlement', ['Paid sick leave is for an employee who is genuinely unable to work because of illness or injury. Employees receive sick leave in accordance with the Labour Act, applicable wage orders, the employment contract, and Annexure D.']],
+      ['Notification', ['An employee who cannot attend work because of illness must notify the employer or immediate supervisor as soon as possible and no less than two hours before the scheduled workday. Failure to notify may result in the absence being treated as unauthorised leave.']],
+      ['Medical certificates', ['Employees must provide a medical certificate from a registered medical practitioner for sick leave of more than two consecutive working days, repeated sick-leave patterns including frequent Monday or Friday absences, or sick leave suspected to be abused. Medical certificates may be verified where abuse is suspected.']],
+      ['Monday and Friday absences', ['Repeated sick leave on Mondays or Fridays may be reviewed as a possible pattern of abuse. An employee may be required to provide a medical certificate for a Monday or Friday absence, particularly where a pattern has been observed. Repeated Monday or Friday absences without valid medical justification may be treated as misconduct.']],
+      ['Abuse of sick leave', ['Abuse includes false or misleading medical information, using sick leave for a non-medical purpose, repeated suspicious absence patterns, or failure to follow notification procedures. Abuse constitutes misconduct and may result in action under the Disciplinary Code and Procedure.']],
+      ['Confidentiality', ['Employees must submit medical information only through the approved confidential process and must not disclose another employee’s medical information. The duty of confidentiality applies to anyone who receives such information through their role.']]
+    ]
+  },
+  {
+    id: 'dress-code', code: 'GA-HR-04', title: 'Staff Dress Code',
+    summary: 'Professional, practical, and safe dress for active learning, care, meetings, and school events.',
+    authority: 'Labour Act 11 of 2007 sections 5 and 41; Gardner Academy safety and professional standards',
+    culture: { label: 'How we show up', href: '?page=show-up' },
+    sections: [
+      ['Purpose', ['Staff appearance should support safety, movement, dignity, and confidence in the school. Clothing must suit the professional role and the work being performed.']],
+      ['Everyday school dress', ['Choose comfortable professional clothing that allows you to sit on the floor, paint, build, garden, investigate, run, and play safely with students. Flat, secure, closed-toe shoes are expected for active duties unless management approves an alternative for a specific role or need.']],
+      ['Required standard', ['Clothing and appearance must:', ['Be clean, neat, practical, and appropriate to the employee’s role.', 'Allow safe movement and active supervision.', 'Provide suitable coverage while bending, reaching, sitting, or moving.', 'Avoid offensive or discriminatory slogans, active campaigning, or prominent partisan messages that are inconsistent with a neutral, child-centred learning environment.', 'Avoid loose accessories, footwear, or garments that create a safety risk.', 'Respect cultural, religious, and personal expression while meeting genuine safety and inherent job requirements.']]],
+      ['Formal occasions', ['For formal parent meetings, presentations, ceremonies, and designated events, staff may be asked to wear more formal professional clothing. Expectations will be communicated in advance where possible.']],
+      ['Questions and adjustments', ['A staff member who needs a dress adjustment for health, disability, pregnancy, religion, culture, or another protected reason should request it privately before departing from the required standard. Until an adjustment is approved, the employee should follow the existing dress requirement as far as safely and reasonably possible.']]
+    ]
+  },
+  {
+    id: 'engaged-teaching', code: 'GA-ED-01', title: 'Engaged Teaching, Differentiation & Cognitive Challenge',
+    summary: 'A practical standard for creative, participatory learning that responds to learner differences and develops higher-order thinking.',
+    authority: 'Gardner Culture and instructional practice standard',
+    culture: { label: 'How we teach', href: '?page=teach' },
+    sections: [
+      ['Purpose', ['This policy establishes Gardner Academy’s expectation that teaching should actively invite participation, honour learner differences, and provide meaningful cognitive challenge. Engagement is planned through thoughtful experiences, relationships, questions, materials, and opportunities to create.']],
+      ['Policy statement', ['Teachers must make every reasonable effort to design learning that is creative, purposeful, and engaging. Planning and delivery should reflect differentiated learning and use Bloom’s Taxonomy to develop thinking beyond simple recall. Engagement does not mean constant entertainment; it means students have an active, meaningful role in learning.']],
+      ['Engagement expectations', ['Learning experiences should:', ['Begin with a clear purpose, meaningful question, problem, experience, or invitation.', 'Connect with prior knowledge, student interests, real contexts, or an authentic audience where appropriate.', 'Use active exploration, discussion, collaboration, movement, making, investigation, or choice rather than relying mainly on passive listening or repetitive worksheets.', 'Include opportunities for imagination, curiosity, revision, problem-solving, and student voice.', 'Use ongoing checks for understanding and adjust when students are confused, disengaged, or insufficiently challenged.']]],
+      ['Differentiated learning', ['Differentiation responds to evidence about learners. Teachers should adjust content, process, support, challenge, environment, pacing, or the way students demonstrate understanding. Differentiation provides multiple pathways towards worthwhile learning goals; it does not mean lowering expectations or preparing an unrelated lesson for every student.']],
+      ['Bloom’s Taxonomy', ['Across a sequence of learning, students should have opportunities to remember, understand, apply, analyse, evaluate, and create. Every lesson does not need to include every level, but planning should deliberately move students beyond recall towards using knowledge, examining relationships, making reasoned judgements, and producing something new.']],
+      ['Planning and evidence', ['Planning should identify the learning intention, likely learner differences, key questions or tasks, supports and extensions, opportunities for active participation, and how understanding will be checked. Teachers should reflect on evidence of engagement and learning, then adapt future planning.']],
+      ['Shared academic responsibility', ['All staff members may be called upon to assist with the planning, preparation, collaboration, or implementation of academic resources and learning experiences where the assigned work is reasonable and lawful.', 'Depending on the employee’s training, background, role, and the needs of the school, this may include:', ['Assisting with non-academic supervision that supports a safe and effective learning experience.', 'Supporting or delivering academic instruction suited to the employee’s training and background.', 'Preparing, organising, adapting, or distributing learning resources and materials.', 'Contributing to planning, preparation, or implementation for another class, programme, subject, or department.', 'Collaborating with colleagues before, during, or after a learning experience.'], 'These examples are not exhaustive. Employees must carry out reasonable and lawful assigned support, ask for clarification when expectations are unclear, and immediately raise any concern about training, competence, authorisation, or student safety before performing a task.']],
+      ['Accountability', ['Teachers must participate in required planning, observation, feedback, coaching, or professional-development activities connected to this standard. Repeated failure to prepare or deliver learning that meets the required standard may be addressed through the applicable performance or disciplinary process.']]
+    ]
+  },
+  {
+    id: 'positive-discipline', code: 'GA-ST-01', title: 'Positive Discipline & Prohibition of Corporal Punishment',
+    summary: 'Respectful behaviour guidance that protects every child’s safety, dignity, voice, and right to learn.',
+    culture: { label: 'How we teach', href: '?page=teach' },
+    sections: [
+      ['Policy statement', ['Gardner Academy prohibits corporal punishment, degrading treatment, intimidation, humiliation, and the use of force as punishment. Behaviour guidance must be calm, proportionate, respectful, and focused on helping the child learn what to do next.']],
+      ['Prohibited conduct', ['Staff must never:', ['Hit, slap, spank, shake, pinch, push, or physically punish a child.', 'Use painful exercise, positions, restraint, food, water, sleep, or toilet access as punishment.', 'Threaten, mock, shame, insult, frighten, humiliate, or use demeaning sarcasm.', 'Label a child as bad, naughty, difficult, lazy, or incapable.', 'Use collective punishment for the actions of an individual.', 'Retaliate against a child who speaks, reports, or asks for help.']]],
+      ['Positive practice', ['Staff should describe the behaviour, state the safe or respectful action they want to see, offer developmentally appropriate choices, help children regulate, guide repair, and teach replacement skills. Consequences must be related, reasonable, and explained without humiliation.']],
+      ['Immediate safety', ['Physical intervention is never a punishment. In an immediate safety emergency, only the minimum necessary action may be taken to prevent harm, in line with approved safeguarding procedures and staff training. Every intervention must be reported and recorded promptly.']],
+      ['Reporting', ['Any observed, disclosed, or suspected corporal punishment, degrading treatment, or inappropriate physical intervention must be reported immediately to the designated safeguarding lead or school head. Staff must record facts and must not investigate the allegation themselves.']]
+    ]
+  },
+  {
+    id: 'safeguarding', code: 'GA-ST-02', title: 'Safeguarding & Active Supervision',
+    summary: 'The duty to remain attentive, prevent harm, respond to concerns, and transfer responsibility safely.',
+    culture: { label: 'How we care', href: '?page=care' },
+    sections: [
+      ['Policy statement', ['The welfare of children is the first consideration in every Gardner decision. All staff share responsibility for creating a safe environment, actively supervising students, and reporting concerns without delay.']],
+      ['Active supervision', ['Active supervision requires with-it-ness: continuous awareness of where students are, what they are doing, how the environment is changing, and where support or intervention may be needed.', 'Staff must:', ['Position themselves so students can be seen and heard.', 'Spread out across supervision areas instead of gathering for casual conversation.', 'Maintain with-it-ness by scanning, listening, moving through the area, anticipating risks, and responding before a situation escalates.', 'Follow the assigned supervision rotation and remain at the designated post until the next responsible staff member has arrived and accepted the handover.', 'Remain alert to entrances, exits, hidden areas, equipment, and changing risks.', 'Never leave students unattended or assume another adult has taken responsibility.', 'Use a clear verbal handover before leaving a group, duty, or activity.', 'Put a child asking for help ahead of non-urgent adult conversation or personal tasks.']]],
+      ['A concern or disclosure', ['Listen calmly, take the child seriously, do not promise secrecy, ask only enough to understand the immediate concern, and report it promptly through the designated safeguarding route. Record the child’s words and observable facts as accurately as possible.']],
+      ['Emergency response', ['Protect immediate safety, summon appropriate help, follow the school emergency procedure, and notify management. Staff must not conduct their own investigation, confront an alleged person, or circulate details beyond those who need to know.']],
+      ['Rotations and changes', ['Staff must check the current supervision rotation, know their assigned area and handover person, and promptly clarify any gap or conflict. An employee who is absent, delayed, moved to another duty, or unable to cover an assigned area must notify the designated person before the rotation begins. Staff must not informally abandon or swap supervision duties without an approved replacement and clear handover.']]
+    ]
+  },
+  {
+    id: 'late-pickup', code: 'GA-OP-02', title: 'Late Pick-Up & After-Hours Care',
+    summary: 'Safe supervision after 17:30, parent contact, accurate handover records, and minute-for-minute time back for the designated employee.',
+    authority: 'Gardner Academy operational and safeguarding standard',
+    culture: { label: 'How we care', href: '?page=care' },
+    sections: [
+      ['Purpose and closing time', ['The normal latest collection time is 17:30. This policy explains what staff must do when a parent or authorised collector has not arrived by that time, how the child remains safely supervised, and how the employee’s additional time is recorded and returned.']],
+      ['Designated employee', ['One designated employee may remain after 17:30 with the child until collection. The employee must notify the responsible manager or designated contact that a late pick-up is in progress, remain in an approved visible area, keep the child supervised, and stay until responsibility is transferred directly to an authorised collector. Staff may not leave a child unattended or assume that another person has taken responsibility without a clear handover.']],
+      ['Contacting the family', ['The designated employee should contact the parent or authorised collector using the school’s approved contact information and, when needed, follow the emergency-contact sequence. Communication must remain calm and factual. The child must never be blamed, frightened, embarrassed, or asked to resolve the adult’s lateness.']],
+      ['Required record', ['The employee must record:', ['The child’s name.', 'The scheduled collection deadline of 17:30.', 'The actual collection and handover time.', 'The name of the authorised person who collected the child.', 'Contact attempts and any relevant factual information.', 'The name of the employee who remained on duty.'], 'The record must be submitted through the approved attendance, handover, or late-collection process.']],
+      ['Time returned to the employee', ['Additional time is calculated from 17:30 until the recorded handover time. The employee receives equivalent paid time off, minute for minute, at the end of the next shift. Before leaving early, the employee must confirm the adjusted departure time, complete the required handover, and ensure no assigned supervision or duty is left uncovered. Late-pick-up time is not paid directly by the parent and does not create a private arrangement between the parent and employee.']],
+      ['No on-the-spot fees or payments', ['There is no on-the-spot late collection fee. Staff must not request, suggest, negotiate, collect, or accept cash, transfers, tips, or any other payment from a parent or collector for remaining with a child after 17:30. Any question about school fees or charges must be referred to Administration.']],
+      ['Extended or repeated late collection', ['If the parent and emergency contacts cannot be reached, the employee must contact the designated manager and follow the school’s safeguarding and emergency procedure. Staff must not improvise transport, release the child to an unauthorised person, arrange informal payments, or confront the family at the gate. Repeated late collection must be recorded and referred to Administration.']]
+    ]
+  },
+  {
+    id: 'staff-gap-coverage', code: 'GA-OP-04', title: 'Staff Gap Coverage & Temporary Reassignment',
+    summary: 'How HODs arrange safe, practical coverage when an absence or staffing gap affects the school day.',
+    authority: 'Gardner Academy operational, staffing, and supervision standard',
+    culture: { label: 'How we show up', href: '?page=show-up' },
+    sections: [
+      ['Purpose', ['Staff absences and unexpected gaps must be handled in a way that protects supervision, learning continuity, safety, and the orderly operation of the school day. This policy explains who makes the coverage decision and what employees are expected to do.']],
+      ['HOD coverage decision', ['The responsible Head of Department determines how a staff gap will be covered. Employees must not independently split a class, move students, reassign a colleague, close an activity, or change a duty rotation unless authorised to do so.']],
+      ['Coverage options', ['Depending on the needs of the day, the Head of Department may:', ['Temporarily move an employee from one department, class, programme, or duty area to another.', 'Split a classroom group and place students with other suitable groups or classes.', 'Combine or adjust activities, supervision areas, duties, or schedules.', 'Assign available support staff to assist with supervision, preparation, or instruction suited to their training and background.', 'Personally step into the classroom, supervision area, programme, or operational duty.', 'Use another reasonable and lawful arrangement that maintains safety and causes the least disruption.']]],
+      ['How the decision is made', ['Coverage is determined according to the circumstances of that day. Relevant factors include group sizes, student needs, supervision requirements, employee workloads, staff training and background, timetable commitments, available spaces and resources, and which arrangement will cause the least disruption to learning and school operations.']],
+      ['Employee responsibilities', ['Employees must:', ['Report an absence, delay, or inability to perform an assigned duty as early as possible through the approved process.', 'Follow a reasonable and lawful temporary reassignment made by the responsible Head of Department.', 'Provide or receive a clear handover of students, duties, plans, materials, medication, safety information, and urgent work.', 'Support colleagues and students calmly without presenting the temporary arrangement as a conflict or inconvenience.', 'Continue following safeguarding, active-supervision, confidentiality, and authorised-collector requirements in the temporary placement.', 'Promptly explain any support, training, authorisation, physical-capacity, or safety concern so that appropriate guidance can be given. A concern must not be used to abandon the assignment or leave students without coverage.']]],
+      ['Training, support, and expected effort', ['Lack of previous training or experience is not, by itself, grounds for refusing a reasonable and lawful temporary assignment. An employee who needs help must request training, guidance, materials, modelling, planning support, or clarification and must participate in the support provided.', 'For example, a teacher temporarily assigned to teach English may not refuse solely because they have not previously been trained specifically in English instruction. Training and support will be provided as needed, and the teacher is expected to make a genuine effort to learn, prepare, apply feedback, and improve until they can fulfil the assigned expectation.', 'An employee must immediately raise a concern where a task would be unlawful, requires a licence or authorisation the employee does not hold, creates an immediate safety risk, or cannot be performed because of a genuine physical or medical limitation.']],
+      ['Temporary nature and communication', ['A same-day coverage decision is temporary unless the employee receives a different written instruction. Employees must check where they are assigned, which group or duties they are responsible for, how long the arrangement applies, and who receives the final handover. Questions or concerns must be raised privately with the Head of Department and must not be discussed negatively in front of students or families.']]
+    ]
+  },
+  {
+    id: 'confidentiality', code: 'GA-OP-01', title: 'Privacy & Confidentiality',
+    summary: 'Responsible collection, use, storage, and sharing of information about students, families, and colleagues.',
+    authority: 'Employment Contract clause 12',
+    culture: { label: 'How we care', href: '?page=care' },
+    sections: [
+      ['Policy statement', ['Confidential information is shared only for a legitimate school purpose and only with people who need it to carry out their role. Privacy supports dignity, trust, and safeguarding.']],
+      ['Protected information', ['Confidential information includes:', ['School, learner, parent, or guardian financial information.', 'Academic records, assessments, and personal information of learners and families.', 'Internal school matters, policies, incidents, or disputes that could bring the school into disrepute.', 'Private human-resources information, including disciplinary action, grievances, complaints, salaries, and benefits.', 'Any other information reasonably regarded as confidential.']]],
+      ['Required practice', ['Staff must:', ['Use approved systems and channels for student, family, and employee information.', 'Keep paper and digital records secure and protect passwords and access.', 'Discuss confidential matters in private, never where students, visitors, or unrelated staff can hear.', 'Protect information in verbal, written, electronic, and social-media communication.', 'Share the minimum information necessary for the task or decision.', 'Report lost records, misdirected messages, unauthorised access, or accidental disclosure immediately.']]],
+      ['Children and safeguarding', ['Do not promise a child that information will remain secret. Explain that information may need to be shared with a trusted safeguarding lead to keep someone safe. A safeguarding duty may require information to be reported even when it is otherwise confidential.']],
+      ['Prohibited use', ['Staff may not access information out of curiosity, use it for personal advantage, post it on personal social media, send it through unapproved accounts, or discuss it casually. School information may not be used to intimidate, embarrass, or undermine another person.']],
+      ['Breach and continuing duty', ['A breach of confidentiality constitutes serious misconduct and may result in disciplinary action, including dismissal after a fair process. The duty of confidentiality continues after employment ends. School records, devices, keys, and access credentials must be returned or disabled through the approved exit process.']]
+    ]
+  },
+  {
+    id: 'fit-for-duty', code: 'GA-HR-05', title: 'Fit for Duty & Substance-Free Workplace',
+    summary: 'The responsibility to work with sound judgement in a drug-free, alcohol-free, smoke-free, and vape-free school.',
+    culture: { label: 'How we care', href: '?page=care' },
+    sections: [
+      ['Policy statement', ['Employees must be physically and mentally able to perform their duties safely. Gardner Academy is a drug-free, alcohol-free, smoke-free, and vape-free workplace, including school events and duties away from the main site.']],
+      ['Prohibited conduct', ['Staff may not:', ['Work while impaired by alcohol, illegal drugs, misused medication, or another substance.', 'Possess, use, distribute, or sell prohibited substances on school property or while on school duty.', 'Smoke or vape on school property, near students, in school vehicles, or during a school activity.', 'Ignore a colleague whose condition may place children or others at risk.']]],
+      ['Medication and health', ['A prescribed or over-the-counter medicine may affect alertness, coordination, or judgement. A staff member who may be unable to work safely must notify management confidentially before undertaking student supervision or another safety-sensitive task. Medical details will be handled with appropriate privacy.']],
+      ['When fitness is affected', ['An affected employee must stop the safety-sensitive duty, ensure students are transferred to another responsible adult, notify the designated manager immediately, and follow instructions concerning safe transport, medical assistance, or fitness to resume duty. Other staff must report an immediate risk and must not leave children under the supervision of a person they reasonably believe is impaired.']],
+      ['Support and accountability', ['Staff are encouraged to seek help early for a health or substance concern. Support does not remove the duty to protect children or prevent the school from addressing serious or repeated breaches through a fair HR process.']]
+    ]
+  },
+  {
+    id: 'staff-benefits', code: 'GA-HR-08', title: 'Staff Benefits: Child Placement, Meals & Shared Kitchen Resources',
+    summary: 'Eligibility and fair-use rules for non-revenue staff-child places, available lunches, and shared tea and coffee resources.',
+    authority: 'Gardner Academy staff benefit and operational standard',
+    culture: { label: 'How we show up', href: '?page=show-up' },
+    sections: [
+      ['Purpose and scope', ['Gardner Academy may provide specified staff benefits to support employees and the school community. These benefits are subject to the eligibility, availability, conduct, and review requirements in this policy. They are not guaranteed merely because a person is employed by the school.']],
+      ['Non-revenue staff-child placement', ['An eligible child admitted under this benefit is recorded as a non-revenue staff child for the period in which the benefit is approved. A staff-child place remains subject to the school’s admissions process, programme capacity, classroom placement, and applicable student policies.']],
+      ['Eligible children', ['The staff-child placement benefit may be considered only for:', ['The employee’s biological child.', 'A child of the employee’s legally recognised spouse.', 'A child legally adopted by the employee.', 'The employee’s grandchild, where that grandchild is the biological child of the employee’s biological child.'], 'Employees must provide reasonable documentation confirming the qualifying relationship when requested.']],
+      ['Allocation by staff category', ['Employees in positions classified by Administration as unqualified may be allocated up to one eligible staff-child place. Employees in positions classified as qualified may be allocated up to two eligible staff-child places. Employees must consult Administration to confirm which category applies to their position. The allocation is a maximum benefit, not a guarantee of placement.']],
+      ['Availability and continued placement', ['Staff children are accepted only where a suitable place is available. Approval is not guaranteed. The benefit may be reviewed, suspended, or revoked when the child’s attendance or enrolment creates sustained educational, behavioural, staffing, or operational difficulty that cannot reasonably be supported within the classroom. The employee must cooperate with meetings, support plans, documentation, and any written decision concerning continued placement.']],
+      ['Free lunch benefit', ['Staff lunches are available only when sufficient food remains and are allocated on a first-come, first-served basis. Initial priority is given to custodial and kitchen staff; other employees must follow the communicated departmental rotation.', 'The lunch benefit may be restricted or revoked for an employee who creates conflict in the kitchen, interferes with food service, takes food outside the approved process, or refuses to clean their dishes and eating area after use.']],
+      ['Tea and coffee', ['Tea, coffee, and related staff-kitchen resources are shared and available only while supplies last. Employees must use them reasonably, leave the area clean, and allow fair access for colleagues. An employee who repeatedly or excessively uses shared resources may have this privilege restricted or revoked.']],
+      ['Questions and restrictions', ['Employees must refer questions about eligibility, staff classification, available places, meal rotation, or a benefit restriction to Administration or Operations. A restricted or unavailable benefit has no cash value or substitute entitlement.']]
+    ]
+  },
+  {
+    id: 'family-communication', code: 'GA-CM-01', title: 'Family Communication & Professional Boundaries',
+    summary: 'Warm, accurate, student-centred communication through approved channels and appropriate professional relationships.',
+    culture: { label: 'Relationships', href: '?page=relationships' },
+    sections: [
+      ['Policy statement', ['Families and staff are partners in a child’s learning. Communication must be warm, clear, factual, respectful, and centred on the student while preserving privacy and professional boundaries.']],
+      ['Communication standard', ['Every communication with a parent or family is made as a representative of Gardner Academy and never in a personal capacity. Staff should greet personally, begin with useful context, explain the relevant information clearly, return the conversation to the student’s needs, and close with a practical next step. Communication should be constructive about the school and encourage its efforts. When unsure, ask internally rather than guessing on behalf of Gardner.']],
+      ['Approved practice', ['Staff must:', ['Use school-approved channels, accounts, groups, and recordkeeping processes.', 'Share factual observations and distinguish them from interpretation or diagnosis.', 'Refer policy, fee, placement, medical, safeguarding, and employment questions to the authorised person.', 'Keep communication courteous and school-focused even when a family is upset or disagrees.', 'Raise personal frustration, disagreement, or discontent through internal supervision, management, grievance, or safeguarding channels and never discuss it with parents.', 'Record significant concerns, commitments, or decisions through the approved process.']]],
+      ['Professional boundaries', ['Staff must not use school relationships to solicit personal business, loans, donations, favours, or private arrangements. Personal contact details, private social-media relationships, gifts, and one-to-one communication with students must follow the applicable school policy and approved communication process.']],
+      ['Escalation and privacy', ['Move sensitive discussions away from students and public areas. A complaint, conflict, safety concern, or request outside the staff member’s authority must be referred promptly to the appropriate manager. Share only information the recipient is authorised to receive.']]
+    ]
+  },
+  {
+    id: 'gifts', code: 'GA-CM-02', title: 'Gifts & Hospitality from Families',
+    summary: 'Clear boundaries for receiving tokens of appreciation without creating obligation, influence, or unequal treatment.',
+    authority: 'Gardner Culture and management standard',
+    culture: { label: 'Relationships', href: '?page=relationships' },
+    sections: [
+      ['Purpose', ['Families may sometimes wish to thank staff. This policy protects warm school relationships while preventing gifts, money, or hospitality from creating obligation, favouritism, influence, or the appearance of a conflict of interest.']],
+      ['Modest tokens of appreciation', ['A staff member may accept an occasional, modest token such as a card, flowers, a small food item, or a low-value classroom gift when it is freely given, appropriate to the relationship, and could not reasonably influence a professional decision. Acceptance never changes how a learner or family is treated.']],
+      ['Gifts that must not be accepted', ['Staff must not accept:', ['Cash, loans, or personal financial assistance.', 'Cash equivalents, vouchers, or gift cards unless management has approved a specific school-wide arrangement in writing.', 'A gift of significant or uncertain value.', 'Travel, accommodation, private entertainment, or substantial hospitality.', 'A gift connected to admissions, assessment, placement, discipline, procurement, a complaint, or another pending decision.', 'A secret gift or anything offered in exchange for special access, information, treatment, or influence.']]],
+      ['No solicitation', ['Staff may not request, suggest, pressure, or organise personal gifts, collections, discounts, loans, services, or contributions from learners or families. School-approved fundraising and staff-appreciation activities must use authorised processes.']],
+      ['Declaration and decision', ['When the value, intention, or appropriateness of a gift is uncertain, the staff member must disclose it promptly and must not use, spend, or dispose of it until a decision is received. The employee must follow the written direction to decline, return, share, surrender, use, or record the gift.']],
+      ['Hospitality and professional boundaries', ['Refreshments offered during an ordinary school-related meeting or community event may be accepted when reasonable and incidental. Personal invitations, repeated hospitality, private business arrangements, or benefits that may blur professional boundaries require prior management approval.']],
+      ['Respectful refusal and records', ['Decline an unsuitable gift warmly and explain that Gardner policy protects fairness for every child and family. Employees must complete the required declaration or gifts-register entry when a gift is more than a modest token or a potential conflict exists.']]
+    ]
+  },
+  {
+    id: 'workplace-conflict', code: 'GA-HR-09', title: 'Workplace Conflict Resolution & Respectful Communication',
+    summary: 'A clear standard for professional communication, collaborative conflict resolution, safe reporting, and fair accountability.',
+    authority: 'Gardner Academy workplace conduct standard',
+    culture: { label: 'Relationships', href: '?page=relationships' },
+    sections: [
+      ['Purpose and principle', ['Gardner Academy recognises every employee’s right to a safe and respectful work environment. Every employee therefore shares responsibility for speaking and acting professionally towards colleagues, even when there is pressure, frustration, disagreement, or a mistake.']],
+      ['Required communication standard', ['Employees must:', ['Speak in a calm, professional, and respectful manner.', 'Address the work, decision, behaviour, or impact rather than attacking the person.', 'Listen without interrupting and make a reasonable effort to understand another perspective.', 'Raise concerns directly and privately where appropriate, instead of arguing in front of students, families, or unrelated colleagues.', 'Use approved supervision, grievance, safeguarding, or management channels when direct discussion is not appropriate or has not resolved the concern.']]],
+      ['Prohibited conduct', ['Conflict must never involve:', ['Threats, intimidation, coercion, or retaliation.', 'Shouting, screaming, harsh or aggressive tones, or hostile gestures.', 'Insults, humiliation, personal attacks, degrading remarks, or abusive language.', 'Harassment, discrimination, bullying, or deliberate exclusion.', 'Public confrontation that disrupts learning, undermines safety, or exposes students and families to internal staff disputes.', 'Gossip, rumour-spreading, or recruiting colleagues to take sides instead of addressing the concern through the correct process.']]],
+      ['Collaborative conflict resolution', ['For an ordinary workplace disagreement, employees should:', ['Pause the discussion when emotions are too high for a respectful conversation.', 'Arrange a suitable private time to discuss the concern.', 'Describe the facts, explain the impact, and identify the work-related outcome needed.', 'Listen to each person’s perspective and agree on practical next steps, responsibilities, and follow-up.', 'Ask a supervisor or neutral manager to facilitate when the matter remains unresolved or a direct conversation would not feel safe or appropriate.']]],
+      ['Serious concerns and immediate escalation', ['An employee does not have to attempt informal resolution where there is a threat, violence, harassment, discrimination, serious bullying, retaliation, safeguarding concern, or significant power imbalance. These matters must be reported promptly to the appropriate manager or through the formal grievance, disciplinary, or safeguarding process. Immediate danger requires an immediate safety response.']],
+      ['Accountability and disciplinary action', ['A breach of this policy may result in disciplinary action under the Disciplinary Code and Procedure. The response will depend on the seriousness, impact, frequency, context, previous conduct, and any mitigating circumstances. Serious threats, violence, harassment, discrimination, or retaliation may constitute serious misconduct. No disciplinary sanction will be imposed without the applicable fair process.']],
+      ['Protection from retaliation', ['No employee may be threatened, disadvantaged, isolated, or punished for raising a genuine concern, asking for assistance, participating honestly in a resolution process, or reporting conduct protected by this policy. Deliberately false or malicious allegations may be addressed separately through a fair process.']]
+    ]
+  },
+  {
+    id: 'hr-investigations', code: 'GA-HR-11', title: 'HR Investigations & Employee Cooperation',
+    summary: 'A fair, confidential process for establishing facts and the responsibilities of employees who report, witness, or respond to a workplace concern.',
+    authority: 'Labour Act 11 of 2007 sections 33 and 48; section 41 where workplace safety is concerned; Gardner Academy employment and procedural standards',
+    culture: { label: 'How we show up', href: '?page=show-up' },
+    sections: [
+      ['Purpose', ['This policy states how employees must cooperate when the school investigates a workplace complaint, incident, safeguarding concern, policy breach, grievance, or other employment matter. An investigation gathers facts; an allegation is not proof of misconduct. The Disciplinary Code, Grievance Procedure, and Safeguarding Policy continue to apply where relevant.']],
+      ['When this policy applies', ['Employees may be required to participate in an authorised investigation concerning conduct, performance, attendance, safety, safeguarding, discrimination, harassment, conflict, dishonesty, property, records, confidentiality, policy compliance, or another legitimate workplace matter.']],
+      ['Employee duty to cooperate', ['Employees must cooperate in good faith with a properly authorised investigation and any reasonable, lawful instruction connected to it. This includes:', ['Attending reasonably scheduled meetings and promptly explaining any genuine inability to attend.', 'Answering relevant questions honestly and completely to the best of their personal knowledge.', 'Clearly distinguishing what they personally saw, heard, or did from assumptions, opinions, or information received from someone else.', 'Providing relevant school records, documents, messages, equipment, or other school-controlled information that is within their possession or authorised access.', 'Identifying relevant witnesses or records without coaching others or coordinating accounts.', 'Reviewing their statement or interview notes where provided and promptly correcting a material error or omission.', 'Continuing to perform ordinary duties unless management gives a different lawful instruction.']]],
+      ['Preserving evidence and the integrity of the process', ['Once an employee knows or reasonably should know that information may be relevant, the employee must not delete, alter, hide, fabricate, remove, destroy, or improperly share it. Staff must not intimidate or retaliate against a complainant or witness, pressure anyone to change an account, agree on a shared version of events, conduct a private parallel investigation, or circulate rumours. Immediate safeguarding evidence or risk must be reported without delay.']],
+      ['Confidentiality with lawful exceptions', ['Information about an investigation must be shared only with people who need it for the process, safety, support, or a lawful report. Confidentiality is not an absolute gag order. Nothing in this policy prevents an employee from obtaining confidential advice, consulting an authorised representative, reporting a safeguarding or criminal concern, making a disclosure the employee is entitled or required to make, exercising a right under the Labour Act or employment contract, or cooperating with a lawful authority.']],
+      ['Employee safeguards', ['An employee may raise a good-faith concern about the scope, relevance, privacy, timing, or lawfulness of a request and may seek confidential advice or authorised representation. Employees are not required to admit misconduct, waive a legal right, or provide unrelated private information. A concern about a request does not excuse silence: the employee must raise it promptly and continue cooperating with the parts that are reasonable and authorised.']],
+      ['Interviews and representation', ['An employee must attend a reasonably scheduled interview or promptly explain a genuine inability to attend. The employee may ask whether they are participating as a complainant, witness, or person whose conduct is under review and may request the general purpose of the meeting. If the matter proceeds to a disciplinary hearing, the formal notice, preparation, response, and representation rights in the Disciplinary Code apply.']],
+      ['Non-cooperation, dishonesty, and retaliation', ['An unexplained refusal to follow a reasonable and lawful instruction, deliberate dishonesty, evidence tampering, intimidation, coordinated accounts, or retaliation may itself be misconduct. Employees must give any explanation or objection promptly and honestly through the investigation process. A good-faith report is not misconduct merely because another person disputes it.']],
+      ['After participation', ['Employees must continue ordinary duties unless instructed otherwise, maintain confidentiality, preserve relevant information, and follow any lawful next-step instruction. Participation does not entitle an employee to another person’s confidential employment information.']]
+    ]
+  },
+  {
+    id: 'theft', code: 'GA-HR-10', title: 'Theft, Suspected Theft & Protection of Property',
+    summary: 'Standards for protecting school and personal property, reporting concerns, preserving evidence, and responding through a fair process.',
+    authority: 'Gardner Academy workplace conduct and property-protection standard',
+    culture: { label: 'How we show up', href: '?page=show-up' },
+    sections: [
+      ['Purpose and standard', ['Every employee must respect property belonging to the school, students, families, colleagues, contractors, and visitors. Theft, attempted theft, fraud, deliberate unauthorised use, concealment, or knowingly receiving stolen property is prohibited. Staff must report concerns privately and must not treat an allegation as proof.']],
+      ['What must not be taken or misused', ['Without proper permission, staff must not:', ['Take, remove, hide, keep, sell, give away, or dispose of money, food, supplies, equipment, records, devices, keys, learning materials, lost property, or personal belongings.', 'Use school funds, accounts, purchasing processes, stock, vehicles, equipment, data, or services for personal benefit.', 'Alter receipts, inventories, attendance information, payment records, or other documents to obtain a benefit or conceal a loss.', 'Ask or encourage a student or colleague to remove, hide, or obtain property on their behalf.', 'Keep found property instead of submitting it through the school lost-property or management process.']]],
+      ['Everyday protection of property', ['Employees must use school property only for authorised work, follow sign-out and stock-control procedures, secure cash, keys, devices, records, and valuable materials, and report missing or damaged items promptly. Personal valuables should be kept in the designated secure area where one is available.']],
+      ['Reporting suspected theft', ['A person who discovers a loss or has a reasonable concern should promptly report it privately to the Principal, Operations, or another designated manager. Record only relevant facts, including what is missing, when and where it was last seen, who had authorised access, and any records or witnesses that may assist. Do not accuse a person publicly, circulate names or rumours, confront a suspected person, or attempt a private investigation.']],
+      ['Preserving evidence', ['Staff must not alter, delete, photograph for personal use, share, hide, or remove possible evidence. Employees must follow instructions to protect an area, item, record, or device and must give relevant information only to the authorised person handling the report. CCTV, access records, financial records, and device information may be accessed only by an employee whose role and authorisation permit it.']],
+      ['Searches and personal dignity', ['No employee may personally search another person, their clothing, bag, phone, vehicle, locker, or belongings. Any inspection or search must be authorised by management, have a lawful and reasonable basis, respect privacy and dignity, and follow the applicable school procedure. A student-related concern must also follow safeguarding requirements. Police or another appropriate authority should be involved where required.']],
+      ['During an investigation', ['Employees must cooperate honestly, maintain confidentiality, preserve evidence, avoid rumours or accusations, and give the person handling the matter any relevant records or explanation requested through the authorised process. Retaliation against a person who raises a genuine concern or participates honestly is prohibited. Deliberately false or malicious allegations may be treated as misconduct.']],
+      ['Recovery, reporting, and disciplinary action', ['Staff must not demand repayment, arrange private compensation, deduct money, contact an insurer or police on behalf of the school, or negotiate a settlement unless specifically authorised. Returning property or repaying a loss does not automatically resolve a misconduct concern. Proven theft, fraud, or dishonesty may constitute serious misconduct and may lead to disciplinary action under the applicable process.']],
+      ['Property found in school', ['Found money or property must be handed promptly to Administration or the designated responsible person and recorded where required. It must be stored securely while reasonable efforts are made to identify the owner. Unclaimed property may be managed only through an approved school decision; it does not become the property of the person who found it.']]
+    ]
+  },
+  {
+    id: 'resources-equipment', code: 'GA-OP-03', title: 'Safeguarding of Resources & Equipment',
+    summary: 'Standards for the safe, responsible, and sustainable use, storage, movement, maintenance, and reporting of school resources and equipment.',
+    authority: 'Gardner Academy operational, safety, and property-management standard',
+    culture: { label: 'How we prepare for learning', href: '?page=prepare-learning' },
+    sections: [
+      ['Purpose and shared responsibility', ['School resources exist to support children, teaching, care, and operations. Every employee has a duty to use them safely, protect them from avoidable loss or damage, keep them available for their intended purpose, and report concerns promptly. This responsibility applies to classroom materials, furniture, tools, appliances, technology, sports and playground equipment, cleaning equipment, keys, vehicles, books, stock, and other school property.']],
+      ['Authorised and appropriate use', ['Employees must:', ['Use resources and equipment only for their intended school purpose and within their training or authority.', 'Follow operating instructions, safety guidance, age restrictions, and required supervision.', 'Check that an item is suitable for the activity, environment, and children using it.', 'Use protective equipment and safety controls where required.', 'Obtain approval before lending, relocating, modifying, repairing, disposing of, or taking school property off site.', 'Never permit personal, commercial, or unauthorised use of school resources.']]],
+      ['Before and during use', ['Before use, staff should make a reasonable visual and functional check for damage, missing parts, contamination, instability, exposed wiring, sharp edges, expired materials, or another obvious hazard. During use, equipment must remain appropriately supervised and must not be overloaded, forced, bypassed, or used in a way that creates an avoidable risk. Students may use equipment only with developmentally appropriate instruction and supervision.']],
+      ['Unsafe, damaged, or malfunctioning equipment', ['If an item appears unsafe, damaged, incomplete, or unreliable: stop using it, prevent others from using it, clearly label or isolate it where possible, and report it promptly through the approved maintenance or management process. Do not make an improvised repair unless authorised and competent to do so. An urgent hazard must be reported immediately and the surrounding area secured until it is safe.']],
+      ['Storage and security', ['Resources must be returned clean, complete, and ready for the next user. Store equipment in its designated place, keep exits and access routes clear, lock restricted items and valuable equipment where required, and keep hazardous substances, medicines, chemicals, sharp tools, keys, and age-restricted resources inaccessible to students except during properly supervised use. Charging equipment and electrical items must be stored and used in a way that avoids heat, moisture, trip, and fire risks.']],
+      ['Sign-out, movement, and return', ['Items covered by an inventory, issue, booking, or sign-out process must be recorded accurately. The person receiving an item is responsible for its reasonable care and timely return, including all parts, cables, cases, keys, or accessories. Property may not be transferred to another employee, classroom, site, or external person without updating the record or notifying the responsible custodian.']],
+      ['Consumables and shared stock', ['Consumables must be used carefully and for approved work. Staff should take only what is reasonably needed, return reusable excess, avoid unnecessary duplication and waste, and notify the responsible person before essential stock runs out. Restricted, high-value, hazardous, or perishable stock must follow the applicable storage and issue controls. Resources reserved for a class, programme, student need, or department may not be redirected without permission.']],
+      ['Loss, damage, and incident reporting', ['Missing items, breakage, spills, faults, misuse, and safety incidents must be reported as soon as they are discovered. The report should state what happened, where and when it occurred, who was using or supervising the item, and what immediate action was taken. Honest reporting supports repair and prevention. Staff must not hide damage, discard evidence, alter records, blame a student without facts, or continue using an unsafe item. Theft or suspected theft must also be handled under the Theft, Suspected Theft & Protection of Property Policy.']],
+      ['Accountability', ['Employees must report ordinary wear, accidental damage, missing items, and mistakes honestly and promptly. Negligence, deliberate misuse, concealment, unauthorised repair or disposal, and repeated failure to follow instructions may result in coaching, retraining, or action under the applicable process. Employees must participate honestly in any follow-up and must not independently replace, pay for, or dispose of an item unless instructed through an approved process.']]
+    ]
+  },
+  {
+    id: 'grievance', code: 'GA-HR-06', title: 'Employee Grievance Procedure',
+    summary: 'A fair route for employees to raise concerns, receive an investigated outcome, and escalate unresolved matters.',
+    authority: 'Employment Contract clause 11; Annexure A',
+    culture: { label: 'Relationships', href: '?page=relationships' },
+    sections: [
+      ['Purpose', ['This procedure provides employees with a fair, respectful, and documented way to raise workplace complaints or concerns without retaliation.']],
+      ['Informal resolution', ['Where appropriate, the employee should first raise the concern with the immediate supervisor and seek an informal resolution. A safeguarding concern, serious misconduct allegation, or concern about that supervisor should be taken directly to the appropriate senior person.']],
+      ['Formal grievance', ['If the matter remains unresolved, the employee may submit a written grievance to the Principal or designated representative. The written grievance should identify the concern, relevant facts, any steps already taken, and the outcome sought.']],
+      ['Participating in the process', ['After submitting a grievance, the employee must attend reasonably scheduled meetings, provide relevant information honestly, preserve relevant records, maintain appropriate confidentiality, and review the written outcome when received.']],
+      ['Escalation', ['An employee who is dissatisfied with the outcome may escalate the grievance to the School Board or Governing Body. The escalation should state why the employee believes the outcome should be reconsidered.']],
+      ['External remedies', ['Nothing in this procedure limits an employee’s right to refer a dispute to the Labour Commissioner or Labour Court.']]
+    ]
+  },
+  {
+    id: 'disciplinary', code: 'GA-HR-07', title: 'Disciplinary Code & Procedure',
+    summary: 'Fair and consistent standards, investigation, hearing rights, possible outcomes, appeals, and records.',
+    authority: 'Employment Contract clauses 10 and 11; Annexure B',
+    culture: { label: 'The Gardner Test', href: '?page=gardner-test' },
+    sections: [
+      ['Purpose and standards', ['Discipline must be fair, consistent, and aligned with Namibian labour law. Employees must perform duties diligently, comply with school policies and lawful instructions, maintain confidentiality, treat learners, families, and colleagues respectfully, and protect the school’s reputation.']],
+      ['Examples of misconduct', ['Misconduct may include:', ['Breach of confidentiality.', 'Absenteeism or lateness without permission.', 'Negligence or poor performance.', 'Insubordination.', 'Harassment or discrimination.', 'Theft, fraud, or dishonesty.', 'Bringing the school into disrepute.', 'Breach of child-protection policies.']]],
+      ['Informal and formal action', ['Minor concerns may be addressed through counselling or a verbal warning. Serious or repeated misconduct may result in a written warning, final written warning, suspension, or dismissal. The appropriate response depends on the facts, seriousness, previous record, and mitigating circumstances.']],
+      ['Right to a fair hearing', ['Before dismissal, the employee must:', ['Receive written notice of the allegations.', 'Receive reasonable time to prepare.', 'Have a reasonable opportunity to state their case.', 'Have the right to be represented by a fellow employee.', 'Receive a written outcome.']]],
+      ['Termination and fairness', ['Employment may be terminated only for a fair and valid reason related to conduct, capacity, or operational requirements and after the applicable fair disciplinary or consultation procedure. Nothing limits rights under the Labour Act or the jurisdiction of the Labour Commissioner or Labour Court.']],
+      ['Appeal', ['An employee may appeal a disciplinary decision to the School Board or Governing Body within the period stated in the written outcome or applicable procedure. The appeal should identify the decision challenged, the reason for the appeal, and any relevant information the employee believes should be reconsidered.']]
+    ]
+  }
+];
+
+const pageIds = new Set(pages.map((page) => page.id));
+const params = new URLSearchParams(window.location.search);
+const requestedPolicy = params.get('policy');
+const policyIndex = policies.findIndex((policy) => policy.id === requestedPolicy);
+const currentPolicy = policyIndex >= 0 ? policies[policyIndex] : null;
+const hashPage = window.location.hash.replace('#', '');
+const requestedPage = currentPolicy ? 'policies' : (params.get('page') || (pageIds.has(hashPage) ? hashPage : 'home'));
+const currentPage = pageIds.has(requestedPage) ? requestedPage : 'home';
+const currentIndex = pages.findIndex((page) => page.id === currentPage);
+
+document.body.dataset.currentPage = currentPage;
+document.querySelectorAll('[data-page]').forEach((section) => {
+  section.hidden = section.dataset.page !== currentPage;
+});
+
+document.querySelectorAll('[data-page-link]').forEach((link) => {
+  const isActive = link.dataset.pageLink === currentPage;
+  link.classList.toggle('active', isActive);
+  if (isActive) link.setAttribute('aria-current', 'page');
+});
+
+document.querySelectorAll('[data-guide-link]').forEach((link) => {
+  const isActive = link.dataset.guideLink === currentPage;
+  link.classList.toggle('active', isActive);
+  if (isActive) link.setAttribute('aria-current', 'page');
+});
+
+document.querySelectorAll('[data-parent-page]').forEach((link) => {
+  link.hidden = link.dataset.parentPage !== currentPage;
+});
+
+const guideHero = document.querySelector('.guide-hero');
+const guideLayout = document.querySelector('.guide-layout');
+const pageTurnNav = document.querySelector('.page-turn-nav');
+const isHome = currentPage === 'home';
+const isPolicyDetail = currentPage === 'policies' && currentPolicy;
+const subsectionLabels = {
+  principles: 'Eight principles',
+  intelligences: 'Multiple intelligences'
+};
+
+guideHero.hidden = isHome || isPolicyDetail;
+guideLayout.hidden = isHome;
+pageTurnNav.hidden = isHome;
+
+if (!isHome) {
+  const page = pages[currentIndex];
+  guideHero.querySelector('.guide-hero-category').textContent = page.category;
+  guideHero.querySelector('h1').textContent = page.label;
+  guideHero.querySelector('.guide-hero-copy').textContent = page.description;
+  if (currentPage === 'teach') {
+    guideHero.querySelector('img').src = 'assets/how-we-teach-objects.png';
+  } else if (currentPage === 'mission-vision') {
+    guideHero.querySelector('img').src = 'assets/culture-curiosity.png';
+  } else if (currentPage === 'prepare-learning') {
+    guideHero.querySelector('img').src = 'assets/prepare-learning-materials-v2.png';
+  } else if (currentPage === 'relationships') {
+    guideHero.querySelector('img').src = 'assets/relationships-objects-v2.png';
+  } else if (currentPage === 'gardner-test') {
+    guideHero.querySelector('img').src = 'assets/gardner-test-compass.png';
+  } else if (currentPage === 'policies') {
+    guideHero.querySelector('img').src = 'assets/policies-objects-v2.png';
+  }
+
+  document.querySelectorAll(`[data-page="${currentPage}"] .chapter-heading`).forEach((heading) => {
+    heading.hidden = true;
+  });
+
+  if (currentPage === 'gardner-test') {
+    document.querySelector('#gardner-test .test-layout > div').hidden = true;
+  }
+
+  const breadcrumbParent = document.querySelector('.breadcrumb-parent');
+  const breadcrumbCurrent = document.querySelector('.breadcrumb-current');
+  const subsectionLabel = subsectionLabels[hashPage];
+
+  if (currentPolicy) {
+    breadcrumbParent.textContent = 'Policies';
+    breadcrumbParent.href = '?page=policies';
+    breadcrumbCurrent.textContent = currentPolicy.title;
+  } else if (subsectionLabel) {
+    breadcrumbParent.textContent = page.label;
+    breadcrumbParent.href = `?page=${page.id}`;
+    breadcrumbCurrent.textContent = subsectionLabel;
+  } else {
+    breadcrumbParent.textContent = page.category;
+    breadcrumbParent.href = '?page=home';
+    breadcrumbCurrent.textContent = page.label;
+  }
+}
+
+const currentLabel = pages[currentIndex].label;
+document.title = currentPolicy ? `${currentPolicy.title} | Gardner Academy` : (currentPage === 'home' ? 'Gardner Culture' : `${currentLabel} | Gardner Culture`);
+
+function renderPolicy(policy) {
+  const hub = document.querySelector('.policies-hub');
+  const documentPanel = document.querySelector('.policy-document');
+  hub.hidden = true;
+  documentPanel.hidden = false;
+  documentPanel.querySelector('.policy-document-code').textContent = policy.code;
+  documentPanel.querySelector('#policy-title').textContent = policy.title;
+  documentPanel.querySelector('.policy-summary').textContent = policy.summary;
+  documentPanel.querySelector('.policy-authority').textContent = policy.authority || 'Gardner Culture and management standard';
+
+  const body = documentPanel.querySelector('.policy-body');
+  body.replaceChildren();
+  policy.sections.forEach(([title, blocks], index) => {
+    const section = document.createElement('section');
+    const heading = document.createElement('h2');
+    heading.innerHTML = `<span>${String(index + 1).padStart(2, '0')}</span>${title}`;
+    section.append(heading);
+    blocks.forEach((block) => {
+      if (Array.isArray(block)) {
+        const list = document.createElement('ul');
+        block.forEach((item) => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          list.append(li);
+        });
+        section.append(list);
+      } else {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = block;
+        section.append(paragraph);
+      }
+    });
+    body.append(section);
+  });
+
+  const related = document.createElement('aside');
+  related.className = 'policy-related';
+  related.innerHTML = '<span>Related culture guidance</span>';
+  const relatedLink = document.createElement('a');
+  relatedLink.href = policy.culture.href;
+  relatedLink.textContent = policy.culture.label;
+  related.append(relatedLink);
+  body.append(related);
+}
+
+if (currentPage === 'policies') {
+  if (currentPolicy) {
+    renderPolicy(currentPolicy);
+    const policyDownload = document.querySelector('.policy-print');
+    policyDownload.href = `pdfs/${currentPolicy.id}.pdf`;
+    policyDownload.download = `${currentPolicy.code}-${currentPolicy.id}.pdf`;
+  }
+  else document.querySelector('.policy-document').hidden = true;
+}
+
+const previousLink = document.querySelector('.page-turn-previous');
+const nextLink = document.querySelector('.page-turn-next');
+const pagePosition = document.querySelector('.page-position');
+
+function setPageTurn(link, page) {
+  if (!page) {
+    link.hidden = true;
+    return;
+  }
+  link.href = `?page=${page.id}`;
+  link.querySelector('strong').textContent = page.label;
+}
+
+if (currentPolicy) {
+  const previousPolicy = policies[policyIndex - 1];
+  const nextPolicy = policies[policyIndex + 1];
+  setPageTurn(previousLink, previousPolicy ? { id: previousPolicy.id, label: previousPolicy.title } : null);
+  setPageTurn(nextLink, nextPolicy ? { id: nextPolicy.id, label: nextPolicy.title } : null);
+  if (previousPolicy) previousLink.href = `?policy=${previousPolicy.id}`;
+  if (nextPolicy) nextLink.href = `?policy=${nextPolicy.id}`;
+  pagePosition.textContent = `${policyIndex + 1} / ${policies.length}`;
+} else {
+  setPageTurn(previousLink, pages[currentIndex - 1]);
+  setPageTurn(nextLink, pages[currentIndex + 1]);
+pagePosition.textContent = `${currentIndex + 1} / ${pages.length}`;
+}
+
+const principleCards = [...document.querySelectorAll('.principle-card')];
+const principleDialog = document.querySelector('.principle-dialog');
+let currentPrincipleIndex = 0;
+let activePrincipleTrigger = null;
+
+function updatePrincipleDialog(index) {
+  const card = principleCards[index];
+  const previousButton = principleDialog.querySelector('.principle-dialog-previous');
+  const nextButton = principleDialog.querySelector('.principle-dialog-next');
+  const practiceList = principleDialog.querySelector('.principle-dialog-practice ul');
+
+  currentPrincipleIndex = index;
+  principleDialog.querySelector('.principle-dialog-number').textContent = `Principle ${card.querySelector('.principle-number').textContent}`;
+  principleDialog.querySelector('#principle-dialog-title').textContent = card.querySelector('h4').textContent;
+  principleDialog.querySelector('.principle-dialog-summary').textContent = card.querySelector('summary > p').textContent;
+  practiceList.replaceChildren(...[...card.querySelectorAll('.principle-practice li')].map((source) => {
+    const item = document.createElement('li');
+    item.textContent = source.textContent;
+    return item;
+  }));
+
+  previousButton.disabled = index === 0;
+  nextButton.disabled = index === principleCards.length - 1;
+  previousButton.querySelector('strong').textContent = index > 0 ? principleCards[index - 1].querySelector('h4').textContent : '';
+  nextButton.querySelector('strong').textContent = index < principleCards.length - 1 ? principleCards[index + 1].querySelector('h4').textContent : '';
+  principleDialog.querySelector('.principle-dialog-position').textContent = `${index + 1} / ${principleCards.length}`;
+}
+
+principleCards.forEach((card, index) => {
+  const trigger = card.querySelector('summary');
+  trigger.setAttribute('aria-haspopup', 'dialog');
+  trigger.addEventListener('click', (event) => {
+    event.preventDefault();
+    card.open = false;
+    activePrincipleTrigger = trigger;
+    updatePrincipleDialog(index);
+    principleDialog.showModal();
+    document.body.classList.add('modal-open');
+  });
+});
+
+principleDialog.querySelector('.principle-dialog-close').addEventListener('click', () => principleDialog.close());
+principleDialog.querySelector('.principle-dialog-previous').addEventListener('click', () => {
+  if (currentPrincipleIndex > 0) updatePrincipleDialog(currentPrincipleIndex - 1);
+});
+principleDialog.querySelector('.principle-dialog-next').addEventListener('click', () => {
+  if (currentPrincipleIndex < principleCards.length - 1) updatePrincipleDialog(currentPrincipleIndex + 1);
+});
+principleDialog.addEventListener('click', (event) => {
+  if (event.target === principleDialog) principleDialog.close();
+});
+principleDialog.addEventListener('close', () => {
+  document.body.classList.remove('modal-open');
+  activePrincipleTrigger?.focus();
+});
+
+menuButton.addEventListener('click', () => {
+  const isOpen = nav.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+});
+
+nav.addEventListener('click', (event) => {
+  if (!event.target.closest('a')) return;
+  nav.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+});
+
+lucide.createIcons();
