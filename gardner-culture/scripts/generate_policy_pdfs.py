@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import sys
 from pathlib import Path
 
 from reportlab.lib import colors
@@ -152,6 +153,13 @@ def build_policy(policy, styles):
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     policies = json.loads(POLICIES_PATH.read_text(encoding="utf-8"))
+    requested_ids = set(sys.argv[1:])
+    if requested_ids:
+        policies = [policy for policy in policies if policy["id"] in requested_ids]
+        found_ids = {policy["id"] for policy in policies}
+        missing_ids = requested_ids - found_ids
+        if missing_ids:
+            raise SystemExit(f"Unknown policy IDs: {', '.join(sorted(missing_ids))}")
     base = getSampleStyleSheet()
     styles = {
         "brand": ParagraphStyle("Brand", parent=base["Normal"], fontName="Helvetica", fontSize=9, leading=14, textColor=NAVY),
@@ -165,7 +173,7 @@ def main():
     }
 
     outputs = [build_policy(policy, styles) for policy in policies]
-    print(f"Generated {len(outputs)} policy PDFs in {OUTPUT_DIR}")
+    print(f"Generated {len(outputs)} policy PDF{'s' if len(outputs) != 1 else ''} in {OUTPUT_DIR}")
 
 
 if __name__ == "__main__":
