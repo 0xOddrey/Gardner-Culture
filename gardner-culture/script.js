@@ -7,7 +7,6 @@ const pages = [
   { id: 'believe', label: 'What we believe', category: 'Foundations', description: 'Children bring ideas, experiences, questions, theories, and abilities into the classroom. Our responsibility is to create the conditions in which they can explore, communicate, collaborate, and grow.' },
   { id: 'teach', label: 'How we teach', category: 'Practice', description: 'Gardner educators observe, listen, question, support, and create opportunities for discovery. We guide children towards confident, independent choices.' },
   { id: 'prepare-learning', label: 'How we prepare for learning', category: 'Practice', description: 'Learning begins before a lesson starts. We prepare spaces that help children feel capable, curious, safe, and ready to participate.' },
-  { id: 'reggio-classrooms', label: 'Reggio-inspired classrooms', category: 'Practice', description: 'A low-resource guide to inquiry, learning centres, documentation, and grade-appropriate classroom practice.' },
   { id: 'show-up', label: 'How we show up', category: 'Practice', description: 'Students, colleagues, and families depend on us. Professionalism at Gardner is active, prepared, reliable, and ready for the work of learning.' },
   { id: 'relationships', label: 'Relationships', category: 'Community', description: 'School, family, and child are on the same team. Partnership requires trust, consistency, communication, and respect.' },
   { id: 'care', label: 'How we care', category: 'Community', description: 'When children are in our care, they have our attention. Supervision is active, present, thoughtful, and responsible.' },
@@ -369,8 +368,6 @@ if (!isHome) {
     guideHero.querySelector('img').src = 'assets/culture-curiosity.png';
   } else if (currentPage === 'prepare-learning') {
     guideHero.querySelector('img').src = 'assets/prepare-learning-materials-v2.png';
-  } else if (currentPage === 'reggio-classrooms') {
-    guideHero.querySelector('img').src = 'assets/prepare-learning-materials-v2.png';
   } else if (currentPage === 'relationships') {
     guideHero.querySelector('img').src = 'assets/relationships-objects-v2.png';
   } else if (currentPage === 'gardner-test') {
@@ -406,35 +403,6 @@ if (!isHome) {
   }
 }
 
-const gradeTabs = [...document.querySelectorAll('[data-grade-tab]')];
-const gradePanels = [...document.querySelectorAll('[data-grade-panel]')];
-
-function selectGradeTab(tab) {
-  const selectedGrade = tab.dataset.gradeTab;
-  gradeTabs.forEach((item) => {
-    const isSelected = item === tab;
-    item.setAttribute('aria-selected', String(isSelected));
-    item.tabIndex = isSelected ? 0 : -1;
-  });
-  gradePanels.forEach((panel) => {
-    panel.hidden = panel.dataset.gradePanel !== selectedGrade;
-  });
-}
-
-gradeTabs.forEach((tab, index) => {
-  tab.addEventListener('click', () => selectGradeTab(tab));
-  tab.addEventListener('keydown', (event) => {
-    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-    event.preventDefault();
-    let nextIndex = index;
-    if (event.key === 'ArrowLeft') nextIndex = (index - 1 + gradeTabs.length) % gradeTabs.length;
-    if (event.key === 'ArrowRight') nextIndex = (index + 1) % gradeTabs.length;
-    if (event.key === 'Home') nextIndex = 0;
-    if (event.key === 'End') nextIndex = gradeTabs.length - 1;
-    selectGradeTab(gradeTabs[nextIndex]);
-    gradeTabs[nextIndex].focus();
-  });
-});
 
 const currentLabel = pages[currentIndex].label;
 document.title = currentPolicy ? `${currentPolicy.title} | Gardner Academy` : (currentPage === 'home' ? 'Gardner Culture' : `${currentLabel} | Gardner Culture`);

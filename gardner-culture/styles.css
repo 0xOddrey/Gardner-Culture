@@ -98,7 +98,6 @@ h4 { font-family: "Fredoka"; font-size: 23px; }
 .directory-yellow { background: var(--yellow); }
 .directory-navy { background: var(--navy); color: var(--white); }
 .directory-pink { background: var(--pink); }
-.directory-reggio { background: #edf5ef; border: 2px solid var(--green); }
 .directory-policy { background: #f3f4f7; border: 2px solid var(--navy); }
 
 .guide-hero { color: var(--white); background: var(--green); }
@@ -113,8 +112,6 @@ body[data-current-page="mission-vision"] .guide-hero { color: var(--navy); backg
 body[data-current-page="mission-vision"] .guide-hero img { width: min(100%, 390px); max-height: 330px; opacity: 1; }
 body[data-current-page="prepare-learning"] .guide-hero { color: var(--navy); background: var(--blue); }
 body[data-current-page="prepare-learning"] .guide-hero img { width: min(100%, 420px); max-height: 370px; opacity: 1; filter: drop-shadow(0 14px 0 rgba(24, 34, 82, .12)); }
-body[data-current-page="reggio-classrooms"] .guide-hero { color: var(--navy); background: #edf5ef; }
-body[data-current-page="reggio-classrooms"] .guide-hero img { width: min(100%, 400px); max-height: 350px; opacity: 1; filter: drop-shadow(0 14px 0 rgba(24, 34, 82, .1)); }
 body[data-current-page="show-up"] .guide-hero { color: var(--navy); background: var(--blue); }
 body[data-current-page="relationships"] .guide-hero { color: var(--navy); background: var(--yellow); }
 body[data-current-page="relationships"] .guide-hero img { width: min(100%, 440px); max-height: 350px; opacity: 1; filter: drop-shadow(0 14px 0 rgba(24, 34, 82, .12)); }
@@ -298,77 +295,6 @@ body.modal-open { overflow: hidden; }
 .prepare-learning-heading .lead { margin-bottom: 6px; }
 .prepare-learning-section .environment-callout { margin-top: 0; }
 
-.reggio-classrooms { padding-bottom: 96px; }
-.reggio-intro { display: grid; grid-template-columns: .95fr 1.05fr; gap: 70px; align-items: start; padding-bottom: 52px; border-bottom: 3px solid var(--navy); }
-.reggio-intro h2 { max-width: 650px; margin: 0; font-size: clamp(42px, 5vw, 66px); }
-.reggio-intro .lead { margin-top: 5px; font-size: 22px; }
-.reggio-intro > div:last-child > p:last-child { margin-bottom: 0; }
-.reggio-principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 42px; border: 2px solid var(--navy); background: var(--navy); }
-.reggio-principles article { min-height: 290px; display: grid; grid-template-columns: 1fr auto; align-content: start; padding: 27px; background: var(--white); }
-.reggio-principles article:nth-child(2) { background: #fff8e7; }
-.reggio-principles article:nth-child(3) { background: #edf5ef; }
-.reggio-principles article:nth-child(4) { background: #eef5fc; }
-.reggio-principles span { color: var(--green); font-family: "Gaegu"; font-size: 20px; }
-.reggio-principles svg { width: 29px; height: 29px; color: var(--coral); }
-.reggio-principles h3 { grid-column: 1 / -1; margin: 38px 0 12px; font-size: 25px; }
-.reggio-principles p { grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 1.5; }
-.low-resource-note { display: grid; grid-template-columns: 56px .8fr 1.2fr; gap: 24px 30px; align-items: center; margin-top: 24px; padding: 34px 38px; border: 3px solid var(--navy); background: var(--yellow); }
-.low-resource-note > svg { width: 45px; height: 45px; color: var(--green); }
-.low-resource-note .script-label { margin: 0 0 3px; color: var(--coral); }
-.low-resource-note h3 { margin: 0; font-size: 31px; }
-.low-resource-note > p { margin: 0; font-size: 16px; }
-.grade-centres { margin-top: 78px; }
-.grade-centres-heading { display: grid; grid-template-columns: 1fr .85fr; gap: 56px; align-items: end; padding-bottom: 34px; }
-.grade-centres-heading h3 { max-width: 650px; margin: 0; font-size: clamp(38px, 4.4vw, 56px); }
-.grade-centres-heading > p { margin: 0; font-size: 17px; }
-.grade-tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 2px solid var(--navy); background: var(--navy); gap: 2px; }
-.grade-tabs button { min-height: 66px; padding: 12px 10px; border: 0; color: var(--navy); background: var(--white); font-family: "Fredoka"; font-size: 16px; cursor: pointer; }
-.grade-tabs button:hover { background: #edf5ef; }
-.grade-tabs button[aria-selected="true"] { color: var(--white); background: var(--green); }
-.grade-tabs button:focus-visible { outline: 4px solid var(--coral); outline-offset: -4px; }
-.grade-panel { border: 2px solid var(--navy); border-top: 0; }
-.grade-panel-summary { display: grid; grid-template-columns: .7fr 1.15fr 1.15fr; gap: 34px; align-items: start; padding: 34px 38px; background: #edf5ef; }
-.grade-panel-summary > span { color: var(--green); font-family: "Gaegu"; font-size: 20px; text-transform: uppercase; }
-.grade-panel-summary h4 { margin: 0; font-family: "Fredoka"; font-size: 29px; line-height: 1.18; }
-.grade-panel-summary p { margin: 0; font-size: 15px; }
-.centre-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--navy); }
-.centre-grid article { min-height: 270px; padding: 29px 32px; background: var(--white); }
-.centre-grid article:nth-child(2), .centre-grid article:nth-child(3) { background: #fffaf0; }
-.centre-grid svg { width: 32px; height: 32px; color: var(--coral); }
-.centre-grid h5 { margin: 17px 0 9px; font-family: "Fredoka"; font-size: 25px; }
-.centre-grid p { margin: 0 0 19px; font-size: 15px; }
-.centre-grid strong { display: block; margin-bottom: 3px; color: var(--green); font-family: "Gaegu"; font-size: 18px; text-transform: uppercase; }
-.centre-grid strong + p { margin-bottom: 0; }
-.documentation-cycle { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; margin-top: 78px; padding: 48px; border: 3px solid var(--navy); background: var(--blue); }
-.documentation-cycle h3 { margin: 0 0 16px; font-size: 44px; }
-.documentation-cycle ol { margin: 0; padding: 0; list-style: none; }
-.documentation-cycle li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 17px; padding: 15px 0; border-bottom: 1px solid color-mix(in srgb, var(--navy) 30%, transparent); }
-.documentation-cycle li:first-child { padding-top: 0; }
-.documentation-cycle li:last-child { padding-bottom: 0; border-bottom: 0; }
-.documentation-cycle li > span { color: var(--coral); font-family: "Gaegu"; font-size: 20px; }
-.documentation-cycle li p { margin: 0; font-size: 15px; }
-.documentation-cycle li strong { display: block; margin-bottom: 2px; font-family: "Fredoka"; font-size: 20px; }
-.reggio-resources { margin-top: 82px; }
-.reggio-resources > header { display: grid; grid-template-columns: .75fr 1.25fr; gap: 10px 64px; padding-bottom: 34px; border-bottom: 3px solid var(--navy); }
-.reggio-resources > header .section-number { grid-column: 1 / -1; }
-.reggio-resources > header h3 { margin: 0; font-size: clamp(40px, 4.5vw, 58px); }
-.reggio-resources > header > p:last-child { margin: 8px 0 0; font-size: 17px; }
-.resource-group { padding: 42px 0; border-bottom: 2px solid #dedede; }
-.resource-group h4 { margin-bottom: 22px; color: var(--green); font-family: "Gaegu"; font-size: 23px; text-transform: uppercase; }
-.resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.resource-grid > a { position: relative; min-height: 245px; display: flex; flex-direction: column; padding: 25px 25px 24px; border: 2px solid var(--navy); border-radius: 6px; color: var(--navy); background: var(--white); text-decoration: none; }
-.resource-grid > a:hover { transform: translateY(-3px); box-shadow: 0 7px 0 var(--yellow); }
-.resource-grid > a > span { margin-bottom: 25px; color: var(--coral); font-family: "Gaegu"; font-size: 17px; text-transform: uppercase; }
-.resource-grid > a > strong { max-width: 85%; margin-bottom: 10px; font-family: "Fredoka"; font-size: 23px; line-height: 1.2; }
-.resource-grid > a > p { margin: 0; font-size: 14px; }
-.resource-grid > a > svg { position: absolute; top: 24px; right: 24px; width: 23px; height: 23px; color: var(--green); }
-.visual-reference-list { border-top: 2px solid var(--navy); }
-.visual-reference-list > a { display: grid; grid-template-columns: 42px minmax(0, 1fr) 28px; gap: 18px; align-items: center; padding: 20px 4px; border-bottom: 2px solid var(--navy); color: var(--navy); text-decoration: none; }
-.visual-reference-list > a:hover strong { color: var(--coral); }
-.visual-reference-list > a > svg:first-child { width: 29px; height: 29px; color: var(--green); }
-.visual-reference-list > a > svg:last-child { width: 22px; height: 22px; }
-.visual-reference-list strong { display: block; font-family: "Fredoka"; font-size: 21px; }
-.visual-reference-list small { display: block; margin-top: 3px; font-size: 14px; }
 
 .show-up-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .statement-block { min-height: 240px; display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 13px; align-content: start; padding: 20px; border: 3px solid var(--navy); border-radius: 8px; }
@@ -563,13 +489,7 @@ body:has(.policy-document:not([hidden])) .guide-layout { margin-top: 48px; }
   .guide-hero-inner { grid-template-columns: 1fr .55fr; }
   .guide-layout { width: min(860px, calc(100vw - 48px)); display: block; }
   .guide-sidebar { display: none; }
-  .chapter-heading, .intelligence-layout, .phrase-feature, .environment-callout, .prepare-learning-heading, .parent-message-heading, .parent-message-layout, .test-layout, .reggio-intro, .grade-centres-heading, .documentation-cycle, .reggio-resources > header { grid-template-columns: 1fr; gap: 38px; }
-  .reggio-principles { grid-template-columns: repeat(2, 1fr); }
-  .low-resource-note { grid-template-columns: 50px 1fr; }
-  .low-resource-note > p { grid-column: 1 / -1; }
-  .grade-panel-summary { grid-template-columns: 1fr 1fr; }
-  .grade-panel-summary > span { grid-column: 1 / -1; }
-  .resource-grid { grid-template-columns: repeat(2, 1fr); }
+  .chapter-heading, .intelligence-layout, .phrase-feature, .environment-callout, .prepare-learning-heading, .parent-message-heading, .parent-message-layout, .test-layout { grid-template-columns: 1fr; gap: 38px; }
   .relationship-stack-row { grid-template-columns: 1fr; }
   .engagement-path { grid-template-columns: 1fr; }
   .engagement-path > div { min-height: 0; }
@@ -602,7 +522,6 @@ body:has(.policy-document:not([hidden])) .guide-layout { margin-top: 48px; }
   body[data-current-page="teach"] .guide-hero img { width: 190px; max-height: 170px; display: block; justify-self: end; margin-top: -10px; }
   body[data-current-page="mission-vision"] .guide-hero img { width: 150px; max-width: 42vw; max-height: 145px; display: block; justify-self: end; }
   body[data-current-page="prepare-learning"] .guide-hero img,
-  body[data-current-page="reggio-classrooms"] .guide-hero img,
   body[data-current-page="relationships"] .guide-hero img,
   body[data-current-page="gardner-test"] .guide-hero img,
   body[data-current-page="policies"] .guide-hero img { width: 160px; max-width: 45vw; max-height: 155px; display: block; justify-self: end; margin-top: -6px; }
@@ -621,20 +540,6 @@ body:has(.policy-document:not([hidden])) .guide-layout { margin-top: 48px; }
   .guide-page .chapter { padding-bottom: 72px; }
   .guide-page .intelligences { padding: 62px 0 72px; }
   .prepare-learning-section { padding: 0 0 72px; }
-  .reggio-classrooms { padding-bottom: 72px; }
-  .reggio-principles, .centre-grid, .resource-grid { grid-template-columns: 1fr; }
-  .reggio-principles article { min-height: 0; }
-  .low-resource-note { grid-template-columns: 40px 1fr; padding: 25px 20px; }
-  .grade-centres { margin-top: 56px; }
-  .grade-tabs { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
-  .grade-tabs button { min-width: 142px; flex: 0 0 auto; scroll-snap-align: start; }
-  .grade-panel-summary { grid-template-columns: 1fr; padding: 26px 22px; }
-  .grade-panel-summary > span { grid-column: auto; }
-  .centre-grid article { min-height: 0; padding: 25px 22px; }
-  .documentation-cycle { margin-top: 56px; padding: 28px 22px; }
-  .reggio-resources { margin-top: 58px; }
-  .reggio-resources > header .section-number { grid-column: auto; }
-  .resource-grid > a { min-height: 220px; }
   .foundation-grid, .principle-grid, .guide-page .principle-grid, .teaching-grid, .show-up-grid, .care-grid, .guide-page .care-grid, .intelligence-list { grid-template-columns: 1fr; }
   .mission-vision-page { padding-bottom: 72px; }
   .mission-vision-intro { margin-bottom: 42px; }
