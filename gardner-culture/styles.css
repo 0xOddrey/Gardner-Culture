@@ -308,11 +308,8 @@ body.modal-open { overflow: hidden; }
 .formula-banner { display: flex; justify-content: center; align-items: center; gap: 26px; margin-bottom: 40px; padding: 32px; background: var(--yellow); border-radius: 8px; }
 .formula-banner span { font-family: "Chewy"; font-size: clamp(39px, 5vw, 68px); }
 .formula-banner svg { width: 34px; height: 34px; color: var(--coral); }
-.relationship-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.voice-panel { padding: 42px; border-radius: 8px; color: var(--cream); background: var(--coral); }
-.voice-panel ol { padding-left: 24px; }
-.voice-panel li { margin: 17px 0; }
 .relationship-stack { display: grid; gap: 18px; }
+.relationship-stack-row { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
 .relationship-stack article { padding: 28px 30px; border: 3px solid var(--navy); border-radius: 8px; background: var(--blue); }
 .relationship-stack article:nth-child(2) { background: var(--yellow); }
 .relationship-stack article:nth-child(3) { background: var(--green); color: var(--cream); }
@@ -491,7 +488,8 @@ body:has(.policy-document:not([hidden])) .guide-layout { margin-top: 48px; }
   .guide-hero-inner { grid-template-columns: 1fr .55fr; }
   .guide-layout { width: min(860px, calc(100vw - 48px)); display: block; }
   .guide-sidebar { display: none; }
-  .chapter-heading, .intelligence-layout, .phrase-feature, .environment-callout, .prepare-learning-heading, .relationship-grid, .parent-message-heading, .parent-message-layout, .test-layout { grid-template-columns: 1fr; gap: 38px; }
+  .chapter-heading, .intelligence-layout, .phrase-feature, .environment-callout, .prepare-learning-heading, .parent-message-heading, .parent-message-layout, .test-layout { grid-template-columns: 1fr; gap: 38px; }
+  .relationship-stack-row { grid-template-columns: 1fr; }
   .engagement-path { grid-template-columns: 1fr; }
   .engagement-path > div { min-height: 0; }
   .principle-grid, .guide-page .principle-grid { grid-template-columns: repeat(2, 1fr); }
