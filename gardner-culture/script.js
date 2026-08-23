@@ -380,10 +380,6 @@ if (!isHome) {
     heading.hidden = true;
   });
 
-  if (currentPage === 'gardner-test') {
-    document.querySelector('#gardner-test .test-layout > div').hidden = true;
-  }
-
   const breadcrumbParent = document.querySelector('.breadcrumb-parent');
   const breadcrumbCurrent = document.querySelector('.breadcrumb-current');
   const subsectionLabel = subsectionLabels[hashPage];
@@ -487,6 +483,238 @@ if (currentPolicy) {
   setPageTurn(previousLink, pages[currentIndex - 1]);
   setPageTurn(nextLink, pages[currentIndex + 1]);
 pagePosition.textContent = `${currentIndex + 1} / ${pages.length}`;
+}
+
+const policyQuizQuestions = [
+  {
+    policy: 'positive-discipline',
+    scenario: 'You are speaking with another staff member when a student comes to ask for help.',
+    question: 'What is the best response?',
+    answers: ['Finish the adult conversation first so you are not rude.', 'Pause the adult conversation, face the student, listen, and help.', 'Tell the student to find another adult.'],
+    correct: 1,
+    title: 'Children take priority over an adult conversation.',
+    explanation: 'Pause the staff conversation and respond to the student. If you were already helping another child, you would acknowledge the waiting student and tell them you will be with them shortly.'
+  },
+  {
+    policy: 'working-hours',
+    scenario: 'You discussed taking special-circumstance leave with your HoD, but you have not received written approval by the day before the leave.',
+    question: 'How should you proceed?',
+    answers: ['Take the leave because the conversation counts as approval.', 'Send a reminder, then take the leave unless the HoD objects.', 'Treat the leave as not approved and remain on duty unless written approval is received.'],
+    correct: 2,
+    title: 'A discussion or unanswered request is not approval.',
+    explanation: 'Special-circumstance and partial-day leave must be approved in writing before it is taken, except where a genuine emergency makes advance approval impossible.'
+  },
+  {
+    policy: 'late-pickup',
+    scenario: 'A parent has not collected a child by 17:30.',
+    question: 'What should staff do?',
+    answers: ['One designated employee remains with the child, records the collection time, and follows the contact procedure.', 'Ask the parent to pay the waiting employee when they arrive.', 'Leave the child with security once the school closes.'],
+    correct: 0,
+    title: 'Supervision continues until an authorised adult collects the child.',
+    explanation: 'One designated employee remains, follows the contact and escalation process, and records the actual pickup time. Staff must not request an on-the-spot fee or personal payment from the parent.'
+  },
+  {
+    policy: 'fit-for-duty',
+    scenario: 'A colleague tells you they consumed alcohol shortly before reporting for duty.',
+    question: 'What is your responsibility?',
+    answers: ['Say nothing unless their behaviour looks impaired.', 'Keep children away from the colleague and report the information immediately through the safeguarding or management channel.', 'Ask the colleague to drink coffee and check on them later.'],
+    correct: 1,
+    title: 'Knowledge of alcohol or drug use before duty must be reported.',
+    explanation: 'Staff must not consume alcohol or drugs and report for duty. Every employee has a safeguarding responsibility to report a colleague known to have done so, without waiting to debate whether impairment is visible.'
+  },
+  {
+    policy: 'positive-discipline',
+    scenario: 'You witness a staff member use corporal punishment on a student.',
+    question: 'What should you do?',
+    answers: ['Protect the child and report what you witnessed promptly through the safeguarding channel.', 'Speak privately to the staff member but keep it within the team.', 'Wait to see whether the child or parent complains.'],
+    correct: 0,
+    title: 'Witnessing corporal punishment creates a duty to report.',
+    explanation: 'Corporal punishment is prohibited. Staff must act to protect the child, record factual information, and report promptly rather than investigating alone or handling it informally.'
+  },
+  {
+    policy: 'family-communication',
+    scenario: 'A parent asks whether staff are unhappy with a recent school decision. You personally feel frustrated about it.',
+    question: 'How should you respond?',
+    answers: ['Share your honest frustration so the parent feels informed.', 'Criticise the decision without naming the people involved.', 'Communicate as a school representative, stay constructive, and raise your concern internally.'],
+    correct: 2,
+    title: 'Parent communication is always made in a professional school capacity.',
+    explanation: 'Staff should communicate positively and constructively about the school. Frustration and discontent belong in the appropriate internal channel, not in conversations with families.'
+  },
+  {
+    policy: 'gifts',
+    scenario: 'A parent gives you an expensive personal gift after you helped their child.',
+    question: 'What is the safest response?',
+    answers: ['Accept it quietly because refusing may offend the parent.', 'Disclose it promptly and do not use, spend, or dispose of it until the school gives direction.', 'Give the parent something of equal value in return.'],
+    correct: 1,
+    title: 'High-value or boundary-sensitive gifts must be disclosed.',
+    explanation: 'A gift must never create preferential treatment, obligation, or the appearance of influence. Prompt disclosure allows the school to decide whether it may be accepted, shared, returned, or declined.'
+  },
+  {
+    policy: 'staff-gap-coverage',
+    scenario: 'Your HoD temporarily assigns you to help teach English. You have limited experience in that subject.',
+    question: 'What should you do?',
+    answers: ['Refuse because lack of experience automatically makes the assignment unreasonable.', 'Follow the reasonable and lawful assignment, request training and support, and make a genuine effort to improve.', 'Agree only if another employee swaps all your normal duties.'],
+    correct: 1,
+    title: 'Limited experience is a reason to request support, not an automatic ground for refusal.',
+    explanation: 'HoDs determine the least disruptive way to cover staff gaps. Staff may request appropriate training and support and are expected to make a genuine effort to fulfil a reasonable, lawful assignment.'
+  },
+  {
+    policy: 'safeguarding',
+    scenario: 'A child quietly tells you something that may mean they are unsafe at home.',
+    question: 'What should you do first?',
+    answers: ['Listen calmly, avoid leading questions or promises of secrecy, record facts, and report promptly.', 'Question the child until you know exactly what happened.', 'Call the family immediately to hear their side.'],
+    correct: 0,
+    title: 'Listen, protect the child’s voice, and report.',
+    explanation: 'Do not investigate or promise secrecy. Receive the information calmly, act within your role to protect the child, record factual words and observations, and use the safeguarding channel promptly.'
+  },
+  {
+    policy: 'engaged-teaching',
+    scenario: 'You need a student to take a sealed attendance note to Administration. Later, you consider asking the same student to fetch your water bottle.',
+    question: 'Which distinction follows Gardner policy?',
+    answers: ['Both errands are acceptable if the student volunteers.', 'Neither errand is ever appropriate for a student.', 'The school note may be a legitimate operational responsibility; fetching an adult’s personal item is not.'],
+    correct: 2,
+    title: 'Students may support learning or school operations, not adult convenience.',
+    explanation: 'A purposeful school task can be appropriate when it is safe and suitable. Students must not be used as personal assistants for adult belongings, food, phones, or other personal errands.'
+  },
+  {
+    policy: 'family-communication',
+    scenario: 'A parent asks you a routine policy question and you are not certain of the correct answer.',
+    question: 'What should you say?',
+    answers: ['Give your best guess so the parent is not kept waiting.', 'Say, “I’m not sure. I’ll check and get back to you,” then follow up.', 'Tell the parent that policies are an Administration matter.'],
+    correct: 1,
+    title: 'It is professional to say that you need to check.',
+    explanation: 'Do not guess on behalf of the school. Acknowledge the question, check through the correct internal channel, and follow up. A possible safety concern is different and must be reported without delay.'
+  },
+  {
+    policy: 'workplace-conflict',
+    scenario: 'A disagreement with a colleague becomes heated and they begin speaking harshly and raising their voice.',
+    question: 'What is the best response?',
+    answers: ['Raise your voice so your position is understood.', 'Move the disagreement into a classroom where fewer adults can hear.', 'Set a respectful boundary, pause if needed, and use the collaborative internal resolution process.'],
+    correct: 2,
+    title: 'Conflict must remain professional and respectful.',
+    explanation: 'Every employee has a right to a safe work environment. Threats, harsh tones, and shouting are not acceptable ways to resolve conflict; concerns should move through the school’s collaborative internal process.'
+  }
+];
+
+const policyQuiz = document.querySelector('.policy-quiz');
+if (policyQuiz) {
+  const intro = policyQuiz.querySelector('.quiz-intro');
+  const questionView = policyQuiz.querySelector('.quiz-question-view');
+  const results = policyQuiz.querySelector('.quiz-results');
+  const answers = policyQuiz.querySelector('.quiz-answers');
+  const feedback = policyQuiz.querySelector('.quiz-feedback');
+  const progress = policyQuiz.querySelector('.quiz-progress-track');
+  let questionOrder = [...policyQuizQuestions];
+  let questionIndex = 0;
+  let score = 0;
+  let missed = [];
+
+  function showQuizPanel(panel) {
+    [intro, questionView, results].forEach((item) => { item.hidden = item !== panel; });
+    policyQuiz.dataset.quizState = panel === intro ? 'intro' : panel === results ? 'results' : 'question';
+  }
+
+  function renderQuizQuestion() {
+    const item = questionOrder[questionIndex];
+    const policy = policies.find((entry) => entry.id === item.policy);
+    policyQuiz.querySelector('.quiz-policy-label').textContent = policy ? `${policy.code} · ${policy.title}` : 'Policy practice';
+    policyQuiz.querySelector('.quiz-position').textContent = `Question ${questionIndex + 1} of ${questionOrder.length}`;
+    policyQuiz.querySelector('.quiz-scenario').textContent = item.scenario;
+    policyQuiz.querySelector('.quiz-question').textContent = item.question;
+    progress.setAttribute('aria-valuemax', String(questionOrder.length));
+    progress.setAttribute('aria-valuenow', String(questionIndex + 1));
+    progress.querySelector('span').style.width = `${((questionIndex + 1) / questionOrder.length) * 100}%`;
+    feedback.hidden = true;
+    feedback.classList.remove('is-correct', 'is-incorrect');
+    answers.replaceChildren();
+    item.answers.forEach((answer, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'quiz-answer';
+      button.innerHTML = `<span>${String.fromCharCode(65 + index)}</span><strong></strong>`;
+      button.querySelector('strong').textContent = answer;
+      button.addEventListener('click', () => answerQuizQuestion(index));
+      answers.append(button);
+    });
+    policyQuiz.querySelector('.quiz-scenario').focus();
+  }
+
+  function answerQuizQuestion(selectedIndex) {
+    const item = questionOrder[questionIndex];
+    const isCorrect = selectedIndex === item.correct;
+    const buttons = [...answers.querySelectorAll('button')];
+    buttons.forEach((button, index) => {
+      button.disabled = true;
+      if (index === item.correct) button.classList.add('is-correct');
+      if (index === selectedIndex && !isCorrect) button.classList.add('is-incorrect');
+    });
+    if (isCorrect) score += 1;
+    else missed.push(item);
+
+    feedback.classList.add(isCorrect ? 'is-correct' : 'is-incorrect');
+    policyQuiz.querySelector('.quiz-feedback-status').textContent = isCorrect ? 'Best response' : 'Review this one';
+    policyQuiz.querySelector('.quiz-feedback-title').textContent = item.title;
+    policyQuiz.querySelector('.quiz-feedback-copy').textContent = item.explanation;
+    const policy = policies.find((entry) => entry.id === item.policy);
+    const policyLink = policyQuiz.querySelector('.quiz-policy-link');
+    policyLink.href = `?policy=${item.policy}`;
+    policyLink.querySelector('span').textContent = policy ? `Review ${policy.title}` : 'Review policy';
+    policyQuiz.querySelector('.quiz-next').innerHTML = questionIndex === questionOrder.length - 1
+      ? 'See results <i data-lucide="arrow-right" aria-hidden="true"></i>'
+      : 'Next question <i data-lucide="arrow-right" aria-hidden="true"></i>';
+    feedback.hidden = false;
+    lucide.createIcons();
+    feedback.focus();
+  }
+
+  function renderQuizResults() {
+    showQuizPanel(results);
+    policyQuiz.querySelector('.quiz-score').textContent = `${score}/${questionOrder.length}`;
+    const percentage = score / questionOrder.length;
+    policyQuiz.querySelector('.quiz-result-message').textContent = percentage === 1
+      ? 'Excellent. You identified the best Gardner response in every scenario.'
+      : percentage >= .75
+        ? 'Strong work. Review the scenarios below to reinforce the policies behind the responses.'
+        : 'This practice has identified useful policies to revisit. Review the explanations, then try again.';
+    const review = policyQuiz.querySelector('.quiz-review');
+    const reviewList = policyQuiz.querySelector('.quiz-review-list');
+    review.hidden = missed.length === 0;
+    reviewList.replaceChildren();
+    missed.forEach((item) => {
+      const policy = policies.find((entry) => entry.id === item.policy);
+      const row = document.createElement('article');
+      const copy = document.createElement('div');
+      const heading = document.createElement('h4');
+      const summary = document.createElement('p');
+      const link = document.createElement('a');
+      heading.textContent = item.scenario;
+      summary.textContent = item.title;
+      link.href = `?policy=${item.policy}`;
+      link.textContent = policy ? `Review ${policy.title}` : 'Review policy';
+      copy.append(heading, summary);
+      row.append(copy, link);
+      reviewList.append(row);
+    });
+    policyQuiz.querySelector('#quiz-results-title').focus();
+  }
+
+  function startQuiz() {
+    questionIndex = 0;
+    score = 0;
+    missed = [];
+    showQuizPanel(questionView);
+    renderQuizQuestion();
+  }
+
+  policyQuiz.querySelector('.quiz-start').addEventListener('click', startQuiz);
+  policyQuiz.querySelector('.quiz-restart').addEventListener('click', startQuiz);
+  policyQuiz.querySelector('.quiz-next').addEventListener('click', () => {
+    if (questionIndex === questionOrder.length - 1) renderQuizResults();
+    else {
+      questionIndex += 1;
+      renderQuizQuestion();
+    }
+  });
 }
 
 const principleCards = [...document.querySelectorAll('.principle-card')];

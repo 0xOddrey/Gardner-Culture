@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gardner Culture: how our beliefs about children shape the way we teach, communicate, collaborate, and care." />
     <title>Gardner Culture</title>
-    <link rel="stylesheet" href="styles.css?v=48" />
+    <link rel="stylesheet" href="styles.css?v=49" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -484,33 +484,79 @@
       </section>
 
       <section id="gardner-test" class="gardner-test chapter-green" data-page="gardner-test">
-        <div class="content-wide test-layout">
+        <div class="content-wide policy-quiz" data-quiz-state="intro">
+          <section class="quiz-intro" aria-labelledby="quiz-intro-title">
+            <div>
+              <p class="section-number">Policy practice</p>
+              <h2 id="quiz-intro-title">What would you do?</h2>
+              <p class="lead">Work through realistic school situations one at a time. Choose the best response, then review the policy reasoning before continuing.</p>
+              <button class="quiz-primary-button quiz-start" type="button">Start practice <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+            </div>
+            <aside class="quiz-intro-note">
+              <i data-lucide="message-circle-question" aria-hidden="true"></i>
+              <p><strong>This is practice, not a pass or fail test.</strong> The goal is to understand why the response protects children, colleagues, families, and the school.</p>
+            </aside>
+          </section>
+
+          <section class="quiz-question-view" aria-live="polite" hidden>
+            <header class="quiz-progress-header">
+              <div>
+                <span class="quiz-policy-label">Policy practice</span>
+                <strong class="quiz-position">Question 1 of 12</strong>
+              </div>
+              <div class="quiz-progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1"><span></span></div>
+            </header>
+
+            <article class="quiz-prompt">
+              <p class="quiz-scenario-label">Scenario</p>
+              <h2 class="quiz-scenario" tabindex="-1"></h2>
+              <p class="quiz-question"></p>
+            </article>
+
+            <div class="quiz-answers" aria-label="Answer choices"></div>
+
+            <section class="quiz-feedback" tabindex="-1" hidden>
+              <div class="quiz-feedback-heading">
+                <i class="quiz-feedback-icon" data-lucide="circle-check" aria-hidden="true"></i>
+                <div><span class="quiz-feedback-status"></span><h3 class="quiz-feedback-title"></h3></div>
+              </div>
+              <p class="quiz-feedback-copy"></p>
+              <div class="quiz-feedback-actions">
+                <a class="quiz-policy-link" href="?page=policies"><i data-lucide="file-text" aria-hidden="true"></i><span>Review policy</span></a>
+                <button class="quiz-primary-button quiz-next" type="button">Next question <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+              </div>
+            </section>
+          </section>
+
+          <section class="quiz-results" aria-labelledby="quiz-results-title" hidden>
+            <p class="section-number">Practice complete</p>
+            <div class="quiz-results-heading">
+              <div><strong class="quiz-score">0/12</strong><span>best responses</span></div>
+              <div><h2 id="quiz-results-title" tabindex="-1">You completed the policy practice.</h2><p class="lead quiz-result-message"></p></div>
+            </div>
+            <div class="quiz-review" hidden>
+              <h3>Review these scenarios</h3>
+              <div class="quiz-review-list"></div>
+            </div>
+            <div class="quiz-result-actions">
+              <button class="quiz-primary-button quiz-restart" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i> Practise again</button>
+              <a class="quiz-secondary-button" href="?page=policies"><i data-lucide="library" aria-hidden="true"></i> Browse all policies</a>
+            </div>
+          </section>
+        </div>
+
+        <div class="content-wide gardner-decision-guide">
           <div>
-            <p class="section-number">The Gardner Test</p>
-            <h2>When you're unsure, begin with the child.</h2>
-            <p class="lead">Policies cannot anticipate every situation. Use these questions to guide your judgement.</p>
+            <p class="script-label">When policy does not give you the answer</p>
+            <h2>Begin with the child.</h2>
           </div>
-          <aside class="mission-test-context">
-            <p class="script-label">Mission & vision check</p>
-            <h3>Does this move Gardner towards its purpose?</h3>
-            <p>Good judgement is not only about avoiding harm. It should actively build the learner experience and graduate outcome we promise.</p>
-            <a href="?page=mission-vision">Review Mission & Vision <i data-lucide="arrow-right" aria-hidden="true"></i></a>
-          </aside>
           <ul>
-            <li class="mission-test-question">Does it build confidence and capability?</li>
-            <li class="mission-test-question">Does it create genuine excitement for learning?</li>
-            <li class="mission-test-question">Does it support holistic success, not only academic performance?</li>
-            <li>Is it good for the child?</li>
-            <li>Is it safe?</li>
-            <li>Does it treat the child as capable?</li>
-            <li>Does it support learning?</li>
-            <li>Does it strengthen partnership with families?</li>
+            <li>Is it safe and good for the child?</li>
+            <li>Does it protect dignity, voice, confidence, and capability?</li>
+            <li>Does it support learning and partnership with families?</li>
             <li>Would I be comfortable explaining this decision?</li>
           </ul>
-        </div>
-        <div class="content-wide closing-line">
-          <span>If you're still unsure</span>
-          <strong>Ask before acting.</strong>
+          <a href="?page=mission-vision">Review Mission & Vision <i data-lucide="arrow-right" aria-hidden="true"></i></a>
         </div>
       </section>
 
@@ -638,6 +684,6 @@
     </footer>
 
     <script src="assets/lucide.js"></script>
-    <script src="script.js?v=42"></script>
+    <script src="script.js?v=43"></script>
   </body>
 </html>
