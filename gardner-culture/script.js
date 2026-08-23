@@ -593,8 +593,278 @@ const policyQuizQuestions = [
     correct: 2,
     title: 'Conflict must remain professional and respectful.',
     explanation: 'Every employee has a right to a safe work environment. Threats, harsh tones, and shouting are not acceptable ways to resolve conflict; concerns should move through the school’s collaborative internal process.'
+  },
+  {
+    page: 'mission-vision',
+    scenario: 'A student is struggling with a new skill and says, “I can’t do this.”',
+    question: 'Which response best supports Gardner’s mission?',
+    answers: ['Complete the difficult part for the student so the work is finished.', 'Acknowledge the difficulty, identify what the student can already do, and support the next achievable step.', 'Remove the activity permanently because it may lower confidence.'],
+    correct: 1,
+    title: 'Confidence and capability grow together through supported challenge.',
+    explanation: 'Gardner’s mission is to build confident and capable lifelong learners who are excited to learn. Support should help the student experience progress without taking ownership of the learning away from them.'
+  },
+  {
+    page: 'mission-vision',
+    scenario: 'A learner earns high marks but struggles to collaborate, communicate, and manage setbacks.',
+    question: 'How does Gardner’s vision guide the response?',
+    answers: ['Academic marks are the only outcome the school needs to address.', 'Lower the learner’s academic expectations until the other skills improve.', 'Support academic learning alongside the social, emotional, communication, and self-management skills needed for holistic success.'],
+    correct: 2,
+    title: 'Gardner’s vision defines success holistically, not only academically.',
+    explanation: 'The graduate outcome includes the whole young person. Academic achievement matters, and so do confidence, relationships, communication, resilience, and the ability to participate successfully in life.'
+  },
+  {
+    page: 'believe',
+    scenario: 'The planned morning activity is ready, but the materials are inaccessible, the room is untidy, and students cannot begin independently.',
+    question: 'What does “child as protagonist” require from staff?',
+    answers: ['Ask students to wait while staff complete unrelated adult tasks.', 'Prepare and maintain the environment so the school day and its services are genuinely organised around children’s learning.', 'Explain that classroom readiness is only the teacher’s responsibility.'],
+    correct: 1,
+    title: 'Every employee works for the learner experience.',
+    explanation: 'When the child is the protagonist, the school day is created around meaningful, safe, well-planned experiences for children. Every staff role contributes to those conditions.'
+  },
+  {
+    page: 'believe',
+    scenario: 'Students are exploring how to build a bridge. Several children have different ideas about what will make it stable.',
+    question: 'What best reflects “child as collaborator”?',
+    answers: ['Give the correct design immediately so the group does not disagree.', 'Let only the fastest student build while the others watch.', 'Invite the children to share theories, test ideas together, and revise their design through discussion.'],
+    correct: 2,
+    title: 'Learning is constructed through relationships, dialogue, and shared inquiry.',
+    explanation: 'Social constructivism recognises that children deepen understanding by explaining, listening, negotiating, testing, and building meaning with others.'
+  },
+  {
+    page: 'believe',
+    scenario: 'A child communicates a complex idea more clearly through drawing and building than through speaking in front of the class.',
+    question: 'How should staff respond?',
+    answers: ['Accept and extend those forms of expression while helping the child strengthen additional ways to communicate.', 'Require a spoken explanation before recognising the idea.', 'Treat the drawing and model as play rather than communication.'],
+    correct: 0,
+    title: 'Children communicate through hundreds of languages.',
+    explanation: 'The child as communicator may use words, movement, art, construction, music, dramatic play, and many other forms. Staff protect the child’s voice by making those languages visible and valued.'
+  },
+  {
+    page: 'believe',
+    scenario: 'A student repeatedly avoids writing tasks, and you are unsure why.',
+    question: 'What does “teacher as researcher” suggest?',
+    answers: ['Label the student as lazy and increase the amount of writing.', 'Observe patterns, listen to the student, document what happens, test supports, and use what you learn to plan.', 'Wait for the family to diagnose the problem before changing anything.'],
+    correct: 1,
+    title: 'Teachers study learners in order to support learning more effectively.',
+    explanation: 'Research begins with careful observation, curiosity, documentation, reflection, and responsive planning. The goal is to understand the learner rather than make a quick judgement.'
+  },
+  {
+    page: 'prepare-learning',
+    scenario: 'Most classroom walls are covered with permanent decorative posters unrelated to current learning. Student work occupies one small corner.',
+    question: 'What should change?',
+    answers: ['Keep the decor because full walls always make a classroom more stimulating.', 'Remove all displays and leave every wall empty.', 'Use displays that connect to active learning and devote more than half of the wall space to children’s work and documentation.'],
+    correct: 2,
+    title: 'The environment should make current learning and children’s thinking visible.',
+    explanation: 'Walls are learning space, not general decoration. Relevant materials can support inquiry, while most display space should honour children’s work, ideas, processes, and documented learning.'
+  },
+  {
+    page: 'believe',
+    scenario: 'A student understands a science concept through movement and demonstration but struggles to explain it in a written paragraph.',
+    question: 'How should multiple-intelligences thinking influence assessment?',
+    answers: ['Provide another meaningful way to demonstrate understanding while continuing to develop writing.', 'Conclude that the student does not understand the concept.', 'Stop teaching writing because the student is only body smart.'],
+    correct: 0,
+    title: 'Different ways of being smart should create access, not fixed labels.',
+    explanation: 'Teachers make room for different ways of understanding and expressing knowledge. Multiple pathways do not remove worthwhile goals; they help learners access, practise, and demonstrate learning.'
+  },
+  {
+    page: 'believe',
+    scenario: 'A group spends several days investigating shadows. Their questions, drawings, photographs, and changing theories are available.',
+    question: 'What is the strongest use of documentation?',
+    answers: ['Display only the neatest final picture.', 'Use the evidence to make the learning process visible, revisit ideas with students, inform planning, and communicate learning to families.', 'Store everything until the end of the year without discussing it.'],
+    correct: 1,
+    title: 'Documentation is a tool for learning, reflection, planning, and partnership.',
+    explanation: 'Strong documentation shows how thinking develops. It helps students and teachers revisit learning and gives families meaningful insight into the journey, not only the final product.'
+  },
+  {
+    page: 'relationships',
+    scenario: 'A family shares that their child is fascinated by cooking at home, while the class is investigating measurement.',
+    question: 'How should “parents as partners” shape the response?',
+    answers: ['Ignore home interests because curriculum decisions belong only to teachers.', 'Use the family’s knowledge as one possible connection that can enrich the investigation for the child and class.', 'Ask the family to teach the entire measurement unit.'],
+    correct: 1,
+    title: 'Families bring valuable knowledge about the child.',
+    explanation: 'Partnership connects home and school around the learner. Staff listen to what families know, communicate respectfully, and use relevant insight to support meaningful learning.'
+  },
+  {
+    page: 'teach',
+    scenario: 'A lesson plan asks every learner to copy definitions for forty minutes, even though several learners already understand the vocabulary and others need concrete examples.',
+    question: 'Which revision best reflects differentiated, cognitively engaging teaching?',
+    answers: ['Keep the task identical so equality is preserved.', 'Provide purposeful entry points, examples, supports, and challenge, then ask learners to apply, analyse, or create with the vocabulary.', 'Let advanced learners leave the classroom while others copy.'],
+    correct: 1,
+    title: 'Differentiation creates meaningful pathways towards worthwhile learning.',
+    explanation: 'Engaged teaching responds to evidence about learners and uses Bloom’s Taxonomy to move beyond recall. It does not mean lowering expectations or preparing an unrelated lesson for every student.'
+  },
+  {
+    page: 'prepare-learning',
+    scenario: 'Students need an adult each time they want paper, pencils, or commonly used learning materials.',
+    question: 'How should the environment be prepared?',
+    answers: ['Place safe, appropriate materials where students can see, reach, use, and return them independently.', 'Lock away all materials to prevent wear.', 'Let students bring every classroom resource from home.'],
+    correct: 0,
+    title: 'Accessible materials communicate trust and capability.',
+    explanation: 'A prepared environment is intentional, inviting, organised, beautiful, and accessible. Staff maintain and guide the space so learners can participate with growing independence.'
+  },
+  {
+    page: 'care',
+    scenario: 'During outdoor time, all supervising adults are standing together while children play across several areas.',
+    question: 'What should the team do?',
+    answers: ['Stay together so staff communication is easier.', 'Use a planned rotation, spread across supervision zones, scan continuously, and maintain with-it-ness about the whole area.', 'Supervise only the children who are usually active.'],
+    correct: 1,
+    title: 'Active supervision requires positioning, rotation, scanning, and with-it-ness.',
+    explanation: 'Staff should know what is happening across the environment, anticipate risk, communicate coverage, and move purposefully rather than supervising from a social cluster.'
+  },
+  {
+    policy: 'attendance',
+    scenario: 'You realise that transport delays will make you late for your scheduled start time.',
+    question: 'What should you do?',
+    answers: ['Notify your supervisor as soon as possible, give honest information, and follow the attendance process on arrival.', 'Wait until you arrive because the delay is outside your control.', 'Ask a colleague to record you as present at the normal time.'],
+    correct: 0,
+    title: 'Early, honest communication protects coverage and student supervision.',
+    explanation: 'Staff must arrive on time and ready to work. When delay may affect attendance, notify the employer or supervisor as soon as possible and keep all time records accurate.'
+  },
+  {
+    policy: 'attendance',
+    scenario: 'Your shift is ending, but the employee taking over supervision has not arrived and no manager has released you.',
+    question: 'What is the correct response?',
+    answers: ['Leave at the scheduled time because the next shift is not your responsibility.', 'Remain with the students, contact the appropriate supervisor, and leave only after responsibility is properly handed over or permission is given.', 'Ask the oldest student to watch the group.'],
+    correct: 1,
+    title: 'Responsibility must be handed over before an employee leaves duty.',
+    explanation: 'Reliable handover protects children. Staff remain responsible until coverage is confirmed or permission to leave has been given through the appropriate channel.'
+  },
+  {
+    policy: 'sick-leave',
+    scenario: 'You have been absent because of illness for more than two consecutive working days.',
+    question: 'What documentation is required?',
+    answers: ['No documentation is ever required for illness.', 'A note written by a colleague.', 'A medical certificate from a registered medical practitioner, submitted through the approved process.'],
+    correct: 2,
+    title: 'Extended sick leave requires the prescribed medical evidence.',
+    explanation: 'A medical certificate is required for sick leave of more than two consecutive working days and may also be required for repeated patterns or suspected abuse.'
+  },
+  {
+    policy: 'sick-leave',
+    scenario: 'You learn private medical details about a colleague because you help process a sick-leave document.',
+    question: 'What may you do with that information?',
+    answers: ['Share it with trusted colleagues so they understand the absence.', 'Keep it confidential and use it only through the approved process for your role.', 'Discuss it without naming the employee.'],
+    correct: 1,
+    title: 'Medical information is confidential.',
+    explanation: 'Employees submit medical information through the approved confidential process. Anyone who receives it through their role has a duty not to disclose it improperly.'
+  },
+  {
+    policy: 'dress-code',
+    scenario: 'You are scheduled for floor activities, painting, outdoor supervision, and a parent meeting on the same day.',
+    question: 'Which clothing best meets the everyday standard?',
+    answers: ['Clean, professional clothing that allows safe movement and secure, closed-toe footwear suited to active duties.', 'Formal clothing that prevents you from sitting or moving with students.', 'Any clothing is acceptable if students like it.'],
+    correct: 0,
+    title: 'Professional dress at Gardner must support active, safe work with children.',
+    explanation: 'Clothing should be neat, practical, provide suitable coverage, and allow staff to sit, move, build, garden, investigate, run, and play safely within their role.'
+  },
+  {
+    policy: 'engaged-teaching',
+    scenario: 'Students become disengaged during a lesson and your checks show that several do not understand the task.',
+    question: 'What should you do?',
+    answers: ['Continue exactly as planned so the lesson is completed.', 'Adjust the explanation, materials, grouping, support, or challenge based on the evidence you are seeing.', 'Tell the class that engagement is solely their responsibility.'],
+    correct: 1,
+    title: 'Engaged teaching responds to evidence during learning.',
+    explanation: 'Teachers observe participation and understanding, then adapt. Every reasonable effort should be made to create purposeful, active opportunities that support learner differences and meaningful challenge.'
+  },
+  {
+    policy: 'confidentiality',
+    scenario: 'A friend who is not employed by the school asks why a particular student has been absent and mentions rumours about the family.',
+    question: 'How should you respond?',
+    answers: ['Correct the rumours by sharing the true information.', 'Share only the details you think are harmless.', 'Do not disclose student or family information and use school information only for authorised work purposes.'],
+    correct: 2,
+    title: 'Student and family information belongs within authorised professional channels.',
+    explanation: 'Confidential information must not be discussed socially, used for personal purposes, or shared with someone who is not authorised to receive it.'
+  },
+  {
+    policy: 'staff-benefits',
+    scenario: 'An eligible employee wants to enrol a staff child and assumes placement is automatic because the benefit is available.',
+    question: 'What should the employee understand?',
+    answers: ['Placement is guaranteed once eligibility is established.', 'Eligibility allows consideration, but placement depends on availability and classroom suitability and is not guaranteed.', 'The employee may place the child in any class without Administration.'],
+    correct: 1,
+    title: 'Staff-child placement is an availability-based benefit, not a guaranteed place.',
+    explanation: 'Administration confirms eligibility and category. Placement depends on space and the effect on the classroom, and the benefit may be reviewed if the enrolment creates additional difficulty.'
+  },
+  {
+    policy: 'staff-benefits',
+    scenario: 'A free staff lunch is available, but the employee demands a portion before the rotation reaches their department and leaves the kitchen untidy.',
+    question: 'Which statement applies?',
+    answers: ['Free lunch is an unconditional entitlement for every employee every day.', 'Availability, the established priority or rotation, respectful conduct, and cleaning up all apply to the privilege.', 'Kitchen staff must prepare another meal whenever food runs out.'],
+    correct: 1,
+    title: 'Meals and shared kitchen resources are availability-based privileges.',
+    explanation: 'Free lunches begin with the stated operational priority and may rotate to other departments. Conflict, waste, excessive use, or refusal to clean up may lead to the privilege being withdrawn.'
+  },
+  {
+    policy: 'hr-investigations',
+    scenario: 'HR asks you to attend an investigation interview about an incident you observed.',
+    question: 'What is expected of you?',
+    answers: ['Cooperate honestly, attend as directed, preserve relevant information, and answer from what you know.', 'Refuse because investigations concern only management.', 'Coordinate your account with colleagues before the interview.'],
+    correct: 0,
+    title: 'Employees must cooperate honestly with a fair HR investigation.',
+    explanation: 'Staff are expected to attend required meetings, provide truthful information, preserve records, and avoid collusion or interference. Cooperation does not require guessing or agreeing with an allegation.'
+  },
+  {
+    policy: 'hr-investigations',
+    scenario: 'After an HR interview, a colleague asks you to reveal what another witness said and suggests excluding that witness from team activities.',
+    question: 'What should you do?',
+    answers: ['Share the information to protect team trust.', 'Decline to discuss confidential investigation information and do not retaliate against or pressure any participant.', 'Warn the witness that the team is upset.'],
+    correct: 1,
+    title: 'Confidentiality and freedom from retaliation protect the integrity of an investigation.',
+    explanation: 'Employees must not intimidate, coach, punish, isolate, or disadvantage someone for reporting a concern or participating in an investigation.'
+  },
+  {
+    policy: 'theft',
+    scenario: 'You notice school equipment is missing and find signs that may help establish what happened.',
+    question: 'What is the best response?',
+    answers: ['Publicly accuse the person you suspect.', 'Ignore it unless the item is personally yours.', 'Report promptly, preserve relevant evidence, and avoid confrontation or spreading allegations.'],
+    correct: 2,
+    title: 'Suspected theft must be reported factually and handled through the proper process.',
+    explanation: 'Staff protect people and property by reporting concerns, preserving information, and allowing an authorised investigation. Rumours, retaliation, and unsupported accusations can cause further harm.'
+  },
+  {
+    policy: 'resources-equipment',
+    scenario: 'A classroom device is accidentally damaged while you are using it, and the damage may create a safety risk.',
+    question: 'What should you do?',
+    answers: ['Stop using it, make the area safe, report the damage promptly, and follow the equipment process.', 'Put it back without saying anything because the damage was accidental.', 'Try an unapproved repair before anyone notices.'],
+    correct: 0,
+    title: 'Prompt reporting protects safety and allows resources to be repaired or replaced responsibly.',
+    explanation: 'Staff must use resources for authorised purposes, follow sign-out and safety procedures, protect equipment from avoidable loss, and report damage or malfunction promptly.'
+  },
+  {
+    policy: 'grievance',
+    scenario: 'You have a workplace concern about a decision affecting you and want it formally addressed.',
+    question: 'What is the appropriate first step?',
+    answers: ['Discuss it with parents so external pressure is created.', 'Raise it through the internal grievance procedure, clearly stating the concern and the outcome you are seeking.', 'Post the complaint publicly before speaking to the school.'],
+    correct: 1,
+    title: 'Employee grievances belong in the fair internal resolution process.',
+    explanation: 'The grievance process provides a professional route to raise and resolve workplace concerns. Employees should give truthful information, participate constructively, and may not be retaliated against for a genuine grievance.'
+  },
+  {
+    policy: 'disciplinary',
+    scenario: 'You receive written notice of a disciplinary allegation and a scheduled hearing.',
+    question: 'Which response best reflects the policy?',
+    answers: ['Ignore the notice because attending would mean admitting guilt.', 'Prepare your response, attend, provide truthful information, and use your right to a fair opportunity to state your case and be represented by a fellow employee.', 'Discuss confidential evidence with parents to gain support.'],
+    correct: 1,
+    title: 'A disciplinary process includes responsibilities and fair-hearing rights.',
+    explanation: 'An employee should participate honestly and may state their case, receive reasonable preparation time, and be represented by a fellow employee. Attendance does not itself admit the allegation.'
   }
 ];
+
+function getQuizSource(item) {
+  if (item.policy) {
+    const policy = policies.find((entry) => entry.id === item.policy);
+    return {
+      eyebrow: policy ? `${policy.code} · ${policy.title}` : 'Staff policy',
+      href: `?policy=${item.policy}`,
+      linkLabel: policy ? `Review ${policy.title}` : 'Review policy'
+    };
+  }
+
+  const page = pages.find((entry) => entry.id === item.page);
+  return {
+    eyebrow: page ? `Gardner Culture · ${page.label}` : 'Gardner Culture',
+    href: `?page=${item.page || 'home'}`,
+    linkLabel: page ? `Review ${page.label}` : 'Review Gardner Culture'
+  };
+}
 
 const policyQuiz = document.querySelector('.policy-quiz');
 if (policyQuiz) {
@@ -616,8 +886,8 @@ if (policyQuiz) {
 
   function renderQuizQuestion() {
     const item = questionOrder[questionIndex];
-    const policy = policies.find((entry) => entry.id === item.policy);
-    policyQuiz.querySelector('.quiz-policy-label').textContent = policy ? `${policy.code} · ${policy.title}` : 'Policy practice';
+    const source = getQuizSource(item);
+    policyQuiz.querySelector('.quiz-policy-label').textContent = source.eyebrow;
     policyQuiz.querySelector('.quiz-position').textContent = `Question ${questionIndex + 1} of ${questionOrder.length}`;
     policyQuiz.querySelector('.quiz-scenario').textContent = item.scenario;
     policyQuiz.querySelector('.quiz-question').textContent = item.question;
@@ -655,10 +925,10 @@ if (policyQuiz) {
     policyQuiz.querySelector('.quiz-feedback-status').textContent = isCorrect ? 'Best response' : 'Review this one';
     policyQuiz.querySelector('.quiz-feedback-title').textContent = item.title;
     policyQuiz.querySelector('.quiz-feedback-copy').textContent = item.explanation;
-    const policy = policies.find((entry) => entry.id === item.policy);
+    const source = getQuizSource(item);
     const policyLink = policyQuiz.querySelector('.quiz-policy-link');
-    policyLink.href = `?policy=${item.policy}`;
-    policyLink.querySelector('span').textContent = policy ? `Review ${policy.title}` : 'Review policy';
+    policyLink.href = source.href;
+    policyLink.querySelector('span').textContent = source.linkLabel;
     policyQuiz.querySelector('.quiz-next').innerHTML = questionIndex === questionOrder.length - 1
       ? 'See results <i data-lucide="arrow-right" aria-hidden="true"></i>'
       : 'Next question <i data-lucide="arrow-right" aria-hidden="true"></i>';
@@ -681,7 +951,7 @@ if (policyQuiz) {
     review.hidden = missed.length === 0;
     reviewList.replaceChildren();
     missed.forEach((item) => {
-      const policy = policies.find((entry) => entry.id === item.policy);
+      const source = getQuizSource(item);
       const row = document.createElement('article');
       const copy = document.createElement('div');
       const heading = document.createElement('h4');
@@ -689,8 +959,8 @@ if (policyQuiz) {
       const link = document.createElement('a');
       heading.textContent = item.scenario;
       summary.textContent = item.title;
-      link.href = `?policy=${item.policy}`;
-      link.textContent = policy ? `Review ${policy.title}` : 'Review policy';
+      link.href = source.href;
+      link.textContent = source.linkLabel;
       copy.append(heading, summary);
       row.append(copy, link);
       reviewList.append(row);
