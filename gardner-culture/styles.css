@@ -710,18 +710,18 @@ body:has(.policy-document:not([hidden])) .guide-layout { margin-top: 48px; }
 body[data-current-page="orientation"] .guide-hero { background: var(--blue); }
 body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw); }
 .directory-orientation { background: var(--blue); color: var(--navy); }
-.orientation-page { padding: 72px 0 110px; background: #fff; }
-.orientation-shell { width: min(1180px, calc(100vw - 48px)); margin: 0 auto; }
-.orientation-registration { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .78fr); border: 3px solid var(--navy); }
-.orientation-registration-copy { padding: 58px 54px; background: var(--yellow); }
-.orientation-registration-copy h2 { max-width: 650px; margin: 16px 0 22px; font-family: var(--display); font-size: 58px; line-height: 1.02; }
+.orientation-page { padding: 12px 0 96px; background: #fff; }
+.orientation-shell { width: 100%; min-width: 0; margin: 0; }
+.orientation-registration { width: 100%; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(330px, .92fr); overflow: hidden; border: 3px solid var(--navy); }
+.orientation-registration-copy { min-width: 0; padding: 48px 42px; background: var(--yellow); }
+.orientation-registration-copy h2 { max-width: 560px; margin: 16px 0 22px; font-family: var(--display); font-size: 52px; line-height: 1.04; }
 .orientation-registration-copy .lead { max-width: 600px; }
 .orientation-time-guide { display: flex; gap: 16px; align-items: center; margin-top: 44px; padding-top: 28px; border-top: 2px solid rgba(24, 37, 93, .24); }
 .orientation-time-guide svg { flex: 0 0 auto; width: 34px; height: 34px; }
 .orientation-time-guide div { display: grid; gap: 3px; }
 .orientation-time-guide strong { font-family: var(--display); font-size: 22px; }
 .orientation-time-guide span { font-size: 14px; }
-.orientation-profile-form { display: grid; gap: 18px; align-content: center; padding: 44px; background: #fff; }
+.orientation-profile-form { min-width: 0; display: grid; gap: 18px; align-content: center; padding: 38px 34px; background: #fff; }
 .orientation-form-heading { margin-bottom: 2px; }
 .orientation-form-heading span { font-family: var(--display); font-size: 30px; }
 .orientation-form-heading p { margin: 5px 0 0; color: #596074; font-size: 14px; line-height: 1.45; }
@@ -852,8 +852,8 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
 
 @media (max-width: 680px) {
   body[data-current-page="orientation"] .guide-hero img { width: 160px; max-width: 45vw; max-height: 155px; display: block; justify-self: end; }
-  .orientation-page { padding: 40px 0 70px; }
-  .orientation-shell { width: calc(100vw - 24px); }
+  .orientation-page { padding: 4px 0 70px; }
+  .orientation-shell { width: 100%; }
   .orientation-registration-copy, .orientation-profile-form { padding: 28px 22px; }
   .orientation-registration-copy h2 { font-size: 43px; }
   .orientation-time-guide { margin-top: 30px; }
