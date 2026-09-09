@@ -12,6 +12,7 @@ const pages = [
   { id: 'care', label: 'How we care', category: 'Community', description: 'When children are in our care, they have our attention. Supervision is active, present, thoughtful, and responsible.' },
   { id: 'practice', label: 'Practice library', category: 'Tools', description: 'Realistic situations that turn Gardner Culture into practical, consistent decisions.' },
   { id: 'gardner-test', label: 'The Gardner Test', category: 'Tools', description: 'Policies cannot anticipate every situation. When you are unsure, begin with the child.' },
+  { id: 'orientation', label: 'Staff Orientation', category: 'Orientation', description: 'A guided Culture and policy review that connects shared beliefs to the decisions every Gardner employee makes.' },
   { id: 'policies', label: 'Staff policies', category: 'Policies', description: 'Clear, formal standards for safe, professional, and responsible practice at Gardner Academy.' },
 ];
 
@@ -127,7 +128,7 @@ const policies = [
       ['Designated employee', ['One designated employee may remain after 17:30 with the child until collection. The employee must notify the responsible manager or designated contact that a late pick-up is in progress, remain in an approved visible area, keep the child supervised, and stay until responsibility is transferred directly to an authorised collector. Staff may not leave a child unattended or assume that another person has taken responsibility without a clear handover.']],
       ['Contacting the family', ['The designated employee should contact the parent or authorised collector using the school’s approved contact information and, when needed, follow the emergency-contact sequence. Communication must remain calm and factual. The child must never be blamed, frightened, embarrassed, or asked to resolve the adult’s lateness.']],
       ['Required record', ['The employee must record:', ['The child’s name.', 'The scheduled collection deadline of 17:30.', 'The actual collection and handover time.', 'The name of the authorised person who collected the child.', 'Contact attempts and any relevant factual information.', 'The name of the employee who remained on duty.'], 'The record must be submitted through the approved attendance, handover, or late-collection process.']],
-      ['Time returned to the employee', ['Additional time is calculated from 17:30 until the recorded handover time. The employee receives equivalent paid time off, minute for minute, at the end of the next shift. Before leaving early, the employee must confirm the adjusted departure time, complete the required handover, and ensure no assigned supervision or duty is left uncovered. Late-pick-up time is not paid directly by the parent and does not create a private arrangement between the parent and employee.']],
+      ['Time returned to the employee', ['Additional time is calculated from 17:30 until the recorded handover time. If the employee is scheduled to leave at 17:30 on the following day, the employee receives equivalent paid time off, minute for minute, at the end of that shift. Before leaving early, the employee must confirm the adjusted departure time, complete the required handover, and ensure no assigned supervision or duty is left uncovered. This early departure does not replace, reduce, or negate any overtime pay required where applicable. Late-pick-up time is not paid directly by the parent and does not create a private arrangement between the parent and employee.']],
       ['No on-the-spot fees or payments', ['There is no on-the-spot late collection fee. Staff must not request, suggest, negotiate, collect, or accept cash, transfers, tips, or any other payment from a parent or collector for remaining with a child after 17:30. Any question about school fees or charges must be referred to Administration.']],
       ['Extended or repeated late collection', ['If the parent and emergency contacts cannot be reached, the employee must contact the designated manager and follow the school’s safeguarding and emergency procedure. Staff must not improvise transport, release the child to an unauthorised person, arrange informal payments, or confront the family at the gate. Repeated late collection must be recorded and referred to Administration.']]
     ]
@@ -372,6 +373,8 @@ if (!isHome) {
     guideHero.querySelector('img').src = 'assets/relationships-objects-v2.png';
   } else if (currentPage === 'gardner-test') {
     guideHero.querySelector('img').src = 'assets/gardner-test-compass.png';
+  } else if (currentPage === 'orientation') {
+    guideHero.querySelector('img').src = 'assets/practice-library-cards-v2.png';
   } else if (currentPage === 'policies') {
     guideHero.querySelector('img').src = 'assets/policies-objects-v2.png';
   }

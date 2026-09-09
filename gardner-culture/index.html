@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gardner Culture: how our beliefs about children shape the way we teach, communicate, collaborate, and care." />
     <title>Gardner Culture</title>
-    <link rel="stylesheet" href="styles.css?v=49" />
+    <link rel="stylesheet" href="styles.css?v=50" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -31,6 +31,7 @@
         <a class="mobile-guide-link" href="?page=care" data-page-link="care">How we care</a>
         <a href="?page=practice" data-page-link="practice">Practice library</a>
         <a href="?page=gardner-test" data-page-link="gardner-test">Gardner Test</a>
+        <a href="?page=orientation" data-page-link="orientation">Staff Orientation</a>
         <a href="?page=policies" data-page-link="policies">Policies</a>
       </nav>
     </header>
@@ -47,7 +48,7 @@
           <a href="?page=mission-vision">Mission & vision <i data-lucide="chevron-right" aria-hidden="true"></i></a>
           <a href="?page=teach">Teaching practice <i data-lucide="chevron-right" aria-hidden="true"></i></a>
           <a href="?page=care">Care & safety <i data-lucide="chevron-right" aria-hidden="true"></i></a>
-          <a href="?page=gardner-test">Gardner Test <i data-lucide="chevron-right" aria-hidden="true"></i></a>
+          <a href="?page=orientation">Staff orientation <i data-lucide="chevron-right" aria-hidden="true"></i></a>
         </div>
       </section>
 
@@ -78,6 +79,7 @@
             <a class="directory-card directory-navy" href="?page=care"><span>05</span><h3>Care & safety</h3><p>How we supervise, protect privacy, stay present, and act responsibly.</p><strong>View guide <i data-lucide="arrow-right" aria-hidden="true"></i></strong></a>
             <a class="directory-card directory-pink" href="?page=practice"><span>06</span><h3>Practice library</h3><p>Apply Gardner Culture to realistic situations and everyday decisions.</p><strong>View guide <i data-lucide="arrow-right" aria-hidden="true"></i></strong></a>
             <a class="directory-card directory-policy" href="?page=policies"><span>07</span><h3>Policies</h3><p>Read the formal expectations that sit underneath Gardner Culture.</p><strong>View policies <i data-lucide="arrow-right" aria-hidden="true"></i></strong></a>
+            <a class="directory-card directory-orientation" href="?page=orientation"><span>08</span><h3>Staff orientation</h3><p>Complete the guided Culture and policy review and create an HR completion record.</p><strong>Begin orientation <i data-lucide="arrow-right" aria-hidden="true"></i></strong></a>
           </div>
         </div>
       </section>
@@ -119,6 +121,7 @@
               <p>Tools</p>
               <a href="?page=practice" data-guide-link="practice">Practice library</a>
               <a href="?page=gardner-test" data-guide-link="gardner-test">The Gardner Test</a>
+              <a href="?page=orientation" data-guide-link="orientation">Staff orientation</a>
               <a href="?page=policies" data-guide-link="policies">Policies</a>
               <a class="guide-anchor" href="?policy=attendance" data-parent-page="policies">Attendance</a>
               <a class="guide-anchor" href="?policy=working-hours" data-parent-page="policies">Working hours & TOIL</a>
@@ -560,6 +563,155 @@
         </div>
       </section>
 
+      <section id="orientation" class="orientation-page" data-page="orientation">
+        <div class="orientation-shell">
+          <section class="orientation-registration" aria-labelledby="orientation-registration-title">
+            <div class="orientation-registration-copy">
+              <p class="section-number">Gardner employee orientation</p>
+              <h2 id="orientation-registration-title">Begin your Gardner orientation.</h2>
+              <p class="lead">This guided review connects Gardner Culture to the policies and practical decisions that shape every employee’s work.</p>
+              <div class="orientation-time-guide">
+                <i data-lucide="clock-3" aria-hidden="true"></i>
+                <div><strong>Allow 40–60 minutes</strong><span>8 Culture modules · 20 policies · 12 scenarios</span></div>
+              </div>
+            </div>
+            <form class="orientation-profile-form">
+              <div class="orientation-form-heading">
+                <span>Employee details</span>
+                <p>These details will appear on the final HR completion record.</p>
+              </div>
+              <label>Full name<input name="fullName" type="text" autocomplete="name" required /></label>
+              <label>Staff number<input name="staffNumber" type="text" autocomplete="off" required /></label>
+              <label>Role or job title<input name="role" type="text" autocomplete="organization-title" required /></label>
+              <label>Department<input name="department" type="text" autocomplete="organization" required /></label>
+              <label>Orientation facilitator <span>(optional)</span><input name="facilitator" type="text" autocomplete="off" /></label>
+              <button class="orientation-primary orientation-begin" type="submit">Begin orientation <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+              <button class="orientation-resume" type="button" hidden>Resume saved orientation</button>
+              <p class="orientation-storage-note"><i data-lucide="lock-keyhole" aria-hidden="true"></i> Progress is saved only in this browser until the orientation is printed or reset.</p>
+            </form>
+          </section>
+
+          <section class="orientation-workspace" hidden>
+            <header class="orientation-toolbar">
+              <div>
+                <span class="orientation-employee-name"></span>
+                <strong class="orientation-stage-label"></strong>
+              </div>
+              <div class="orientation-elapsed"><i data-lucide="clock-3" aria-hidden="true"></i><span>0 min</span></div>
+              <button class="orientation-reset" type="button" title="Start a new employee orientation"><i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Start over</span></button>
+            </header>
+
+            <nav class="orientation-stepper" aria-label="Orientation progress">
+              <div data-orientation-step="culture"><span>01</span><strong>Culture</strong><small>0/8</small></div>
+              <div data-orientation-step="policies"><span>02</span><strong>Policies</strong><small>0/20</small></div>
+              <div data-orientation-step="assessment"><span>03</span><strong>Scenarios</strong><small>0/12</small></div>
+              <div data-orientation-step="summary"><span>04</span><strong>Summary</strong><small>Pending</small></div>
+            </nav>
+            <div class="orientation-overall-progress" role="progressbar" aria-label="Overall orientation progress" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0"><span></span></div>
+
+            <section class="orientation-learning-pane orientation-culture-pane" aria-live="polite">
+              <header class="orientation-content-heading">
+                <div><span class="orientation-module-number"></span><p>Gardner Culture</p></div>
+                <a class="orientation-source-link" href="?page=home" target="_blank">Open full chapter <i data-lucide="external-link" aria-hidden="true"></i></a>
+              </header>
+              <article class="orientation-module-content">
+                <p class="script-label orientation-module-kicker"></p>
+                <h2 class="orientation-module-title" tabindex="-1"></h2>
+                <p class="lead orientation-module-intro"></p>
+                <div class="orientation-module-points"></div>
+                <aside class="orientation-module-scenario">
+                  <span>Think in practice</span>
+                  <h3></h3>
+                  <p></p>
+                </aside>
+              </article>
+              <section class="orientation-module-check">
+                <p class="section-number">Knowledge check</p>
+                <h3 class="orientation-module-question"></h3>
+                <div class="orientation-module-answers"></div>
+                <div class="orientation-module-feedback" tabindex="-1" hidden><strong></strong><p></p></div>
+              </section>
+              <footer class="orientation-pane-actions">
+                <button class="orientation-secondary orientation-culture-previous" type="button"><i data-lucide="arrow-left" aria-hidden="true"></i> Previous</button>
+                <button class="orientation-primary orientation-culture-next" type="button" disabled>Continue <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+              </footer>
+            </section>
+
+            <section class="orientation-learning-pane orientation-policy-pane" aria-live="polite" hidden>
+              <header class="orientation-content-heading">
+                <div><span class="orientation-policy-position"></span><p>Staff policy review</p></div>
+                <a class="orientation-policy-source" href="?page=policies" target="_blank">Open policy page <i data-lucide="external-link" aria-hidden="true"></i></a>
+              </header>
+              <article class="orientation-policy-content">
+                <p class="orientation-policy-code"></p>
+                <h2 class="orientation-policy-title" tabindex="-1"></h2>
+                <p class="lead orientation-policy-summary"></p>
+                <div class="orientation-policy-body"></div>
+              </article>
+              <div class="orientation-policy-confirmation">
+                <label><input class="orientation-policy-checkbox" type="checkbox" /><span>I have reviewed this policy and understand the employee expectations described above.</span></label>
+                <p class="orientation-policy-reviewed" hidden></p>
+              </div>
+              <footer class="orientation-pane-actions">
+                <button class="orientation-secondary orientation-policy-previous" type="button"><i data-lucide="arrow-left" aria-hidden="true"></i> Previous</button>
+                <button class="orientation-primary orientation-policy-next" type="button" disabled>Record review & continue <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+              </footer>
+            </section>
+
+            <section class="orientation-learning-pane orientation-assessment-pane" aria-live="polite" hidden>
+              <header class="orientation-content-heading">
+                <div><span class="orientation-assessment-position"></span><p>Scenario assessment</p></div>
+                <strong class="orientation-assessment-score">0 correct</strong>
+              </header>
+              <article class="orientation-assessment-prompt">
+                <p class="orientation-assessment-source"></p>
+                <h2 class="orientation-assessment-scenario" tabindex="-1"></h2>
+                <p class="orientation-assessment-question"></p>
+              </article>
+              <div class="orientation-assessment-answers"></div>
+              <div class="orientation-assessment-feedback" tabindex="-1" hidden><strong></strong><h3></h3><p></p></div>
+              <footer class="orientation-pane-actions">
+                <span>Choose the best Gardner response.</span>
+                <button class="orientation-primary orientation-assessment-next" type="button" disabled>Next scenario <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+              </footer>
+            </section>
+
+            <section class="orientation-summary" aria-labelledby="orientation-summary-title" hidden>
+              <div class="orientation-summary-actions">
+                <button class="orientation-secondary orientation-summary-back" type="button"><i data-lucide="arrow-left" aria-hidden="true"></i> Review scenarios</button>
+                <button class="orientation-primary orientation-print-summary" type="button"><i data-lucide="printer" aria-hidden="true"></i> Print HR record</button>
+              </div>
+              <article class="orientation-record">
+                <header class="orientation-record-header">
+                  <img src="assets/gardner-logo.png" alt="The Gardner Academy" />
+                  <div><span>Gardner Academy</span><h1 id="orientation-summary-title" tabindex="-1">Employee Orientation Record</h1><p>Gardner Culture and Staff Policy Review</p></div>
+                </header>
+                <section class="orientation-record-details"></section>
+                <section class="orientation-record-results"></section>
+                <section class="orientation-record-culture">
+                  <h2>Culture modules reviewed</h2>
+                  <div></div>
+                </section>
+                <section class="orientation-record-policies">
+                  <h2>Staff policies reviewed</h2>
+                  <table><thead><tr><th>Policy</th><th>Reviewed</th></tr></thead><tbody></tbody></table>
+                </section>
+                <section class="orientation-record-review" hidden>
+                  <h2>Topics for follow-up</h2>
+                  <ul></ul>
+                </section>
+                <section class="orientation-record-declaration">
+                  <h2>Employee acknowledgement</h2>
+                  <p>I confirm that I completed this orientation, reviewed the policies listed above, and had the opportunity to ask questions. I understand that I am responsible for following current Gardner Academy policies and seeking guidance when I am unsure.</p>
+                  <div><span>Employee signature</span><span>Date</span><span>Facilitator / reviewer signature</span><span>Date</span></div>
+                </section>
+                <footer>Generated from Gardner Culture · <span class="orientation-record-generated"></span></footer>
+              </article>
+            </section>
+          </section>
+        </div>
+      </section>
+
       <section id="policies" class="policies-page" data-page="policies">
         <div class="policies-hub">
           <div class="policy-hub-heading">
@@ -684,6 +836,7 @@
     </footer>
 
     <script src="assets/lucide.js"></script>
-    <script src="script.js?v=44"></script>
+    <script src="script.js?v=45"></script>
+    <script src="orientation.js?v=1"></script>
   </body>
 </html>
