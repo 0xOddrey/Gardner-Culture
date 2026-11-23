@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gardner Culture: how our beliefs about children shape the way we teach, communicate, collaborate, and care." />
     <title>Gardner Culture</title>
-    <link rel="stylesheet" href="styles.css?v=51" />
+    <link rel="stylesheet" href="styles.css?v=53" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -648,6 +648,13 @@
                 <p class="lead orientation-policy-summary"></p>
                 <div class="orientation-policy-body"></div>
               </article>
+              <section class="orientation-policy-check">
+                <p class="section-number">Policy knowledge check</p>
+                <div class="orientation-policy-scenario"></div>
+                <h3 class="orientation-policy-question"></h3>
+                <div class="orientation-policy-answers"></div>
+                <div class="orientation-policy-feedback" tabindex="-1" hidden><strong></strong><h3></h3><p></p></div>
+              </section>
               <div class="orientation-policy-confirmation">
                 <label><input class="orientation-policy-checkbox" type="checkbox" /><span>I have reviewed this policy and understand the employee expectations described above.</span></label>
                 <p class="orientation-policy-reviewed" hidden></p>
@@ -679,13 +686,19 @@
             <section class="orientation-summary" aria-labelledby="orientation-summary-title" hidden>
               <div class="orientation-summary-actions">
                 <button class="orientation-secondary orientation-summary-back" type="button"><i data-lucide="arrow-left" aria-hidden="true"></i> Review scenarios</button>
-                <button class="orientation-primary orientation-print-summary" type="button"><i data-lucide="printer" aria-hidden="true"></i> Print HR record</button>
+                <div class="orientation-summary-status"><strong>Orientation complete</strong><span>Saved on this browser. Print or save the certificate and review record for the employee’s HR file.</span></div>
+                <button class="orientation-primary orientation-print-summary" type="button"><i data-lucide="printer" aria-hidden="true"></i> Print / Save PDF</button>
               </div>
               <article class="orientation-record">
                 <header class="orientation-record-header">
                   <img src="assets/gardner-logo.png" alt="The Gardner Academy" />
                   <div><span>Gardner Academy</span><h1 id="orientation-summary-title" tabindex="-1">Employee Orientation Record</h1><p>Gardner Culture and Staff Policy Review</p></div>
                 </header>
+                <section class="orientation-completion-certificate">
+                  <p>Certificate of completion</p>
+                  <h2><span class="orientation-certificate-name"></span> has completed the Gardner Academy employee orientation.</h2>
+                  <div><span>Completion date <strong class="orientation-certificate-date"></strong></span><span>Knowledge score <strong class="orientation-certificate-score"></strong></span></div>
+                </section>
                 <section class="orientation-record-details"></section>
                 <section class="orientation-record-results"></section>
                 <section class="orientation-record-culture">
@@ -694,7 +707,7 @@
                 </section>
                 <section class="orientation-record-policies">
                   <h2>Staff policies reviewed</h2>
-                  <table><thead><tr><th>Policy</th><th>Reviewed</th></tr></thead><tbody></tbody></table>
+                  <table><thead><tr><th>Policy</th><th>Knowledge check</th><th>Reviewed</th></tr></thead><tbody></tbody></table>
                 </section>
                 <section class="orientation-record-review" hidden>
                   <h2>Topics for follow-up</h2>
@@ -837,6 +850,6 @@
 
     <script src="assets/lucide.js"></script>
     <script src="script.js?v=45"></script>
-    <script src="orientation.js?v=1"></script>
+    <script src="orientation.js?v=3"></script>
   </body>
 </html>

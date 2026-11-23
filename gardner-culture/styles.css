@@ -775,9 +775,9 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
 .orientation-module-scenario span { color: var(--orange); font-family: var(--display); font-size: 13px; text-transform: uppercase; }
 .orientation-module-scenario h3 { margin: 8px 0; font-family: var(--display); font-size: 25px; }
 .orientation-module-scenario p { margin: 0; line-height: 1.6; }
-.orientation-module-check { padding: 35px; border: 2px solid var(--navy); background: #f9f9f8; }
-.orientation-module-check h3 { max-width: 850px; margin: 8px 0 22px; font-family: var(--display); font-size: 27px; line-height: 1.25; }
-.orientation-module-answers, .orientation-assessment-answers { display: grid; gap: 10px; }
+.orientation-module-check, .orientation-policy-check { padding: 35px; border: 2px solid var(--navy); background: #f9f9f8; }
+.orientation-module-check h3, .orientation-policy-check > h3 { max-width: 850px; margin: 8px 0 22px; font-family: var(--display); font-size: 27px; line-height: 1.25; }
+.orientation-module-answers, .orientation-policy-answers, .orientation-assessment-answers { display: grid; gap: 10px; }
 .orientation-answer { width: 100%; min-height: 58px; display: grid; grid-template-columns: 38px 1fr; gap: 13px; align-items: center; padding: 9px 16px 9px 9px; border: 2px solid #c9cdd6; border-radius: 5px; color: var(--navy); background: #fff; text-align: left; cursor: pointer; }
 .orientation-answer > span { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: #edf0f5; font-family: var(--display); }
 .orientation-answer strong { font-size: 15px; line-height: 1.4; }
@@ -785,10 +785,10 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
 .orientation-answer.selected { border-color: var(--navy); background: #eef4fb; }
 .orientation-answer.is-correct { border-color: var(--green); background: #edf7f0; }
 .orientation-answer.is-incorrect { border-color: var(--orange); background: #fff0e9; }
-.orientation-module-feedback, .orientation-assessment-feedback { margin-top: 18px; padding: 20px 22px; border-left: 7px solid var(--green); background: #edf7f0; }
-.orientation-module-feedback.is-incorrect, .orientation-assessment-feedback.is-incorrect { border-left-color: var(--orange); background: #fff0e9; }
-.orientation-module-feedback strong, .orientation-assessment-feedback > strong { font-family: var(--display); }
-.orientation-module-feedback p, .orientation-assessment-feedback p { margin: 5px 0 0; line-height: 1.5; }
+.orientation-module-feedback, .orientation-policy-feedback, .orientation-assessment-feedback { margin-top: 18px; padding: 20px 22px; border-left: 7px solid var(--green); background: #edf7f0; }
+.orientation-module-feedback.is-incorrect, .orientation-policy-feedback.is-incorrect, .orientation-assessment-feedback.is-incorrect { border-left-color: var(--orange); background: #fff0e9; }
+.orientation-module-feedback strong, .orientation-policy-feedback > strong, .orientation-assessment-feedback > strong { font-family: var(--display); }
+.orientation-module-feedback p, .orientation-policy-feedback p, .orientation-assessment-feedback p { margin: 5px 0 0; line-height: 1.5; }
 .orientation-policy-code { margin: 0; color: var(--orange); font-family: var(--display); font-size: 15px; }
 .orientation-policy-body { margin-top: 38px; }
 .orientation-policy-body section { padding: 27px 0; border-top: 1px solid #d8dbe1; }
@@ -797,6 +797,9 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
 .orientation-policy-body p { margin: 0; }
 .orientation-policy-body p + p, .orientation-policy-body ul + p { margin-top: 12px; }
 .orientation-policy-body ul { margin: 10px 0 0; padding-left: 22px; }
+.orientation-policy-check { margin: 4px 0 24px; background: #f5f8fc; }
+.orientation-policy-scenario { margin: 8px 0 20px; padding: 18px 20px; border-left: 6px solid var(--blue); background: #fff; font-size: 17px; line-height: 1.55; }
+.orientation-policy-feedback h3 { margin: 7px 0 0; font-family: var(--display); font-size: 22px; }
 .orientation-policy-confirmation { padding: 24px 26px; border: 2px solid var(--green); background: #edf7f0; }
 .orientation-policy-confirmation label { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; font-weight: 700; line-height: 1.5; cursor: pointer; }
 .orientation-policy-checkbox { width: 20px; height: 20px; margin-top: 1px; accent-color: var(--green); }
@@ -809,13 +812,23 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
 .orientation-pane-actions { display: flex; gap: 18px; align-items: center; justify-content: space-between; margin-top: 42px; padding: 26px 0 34px; border-top: 2px solid #e2e4e9; }
 .orientation-pane-actions > span { color: #656b79; font-size: 13px; }
 .orientation-summary { padding: 34px 42px 52px; background: #f3f4f6; }
-.orientation-summary-actions { display: flex; justify-content: space-between; margin-bottom: 24px; }
+.orientation-summary-actions { display: grid; grid-template-columns: auto minmax(220px, 1fr) auto; gap: 22px; align-items: center; margin-bottom: 24px; }
+.orientation-summary-status { display: grid; gap: 3px; text-align: center; }
+.orientation-summary-status strong { color: var(--green); font-family: var(--display); font-size: 18px; }
+.orientation-summary-status span { color: #616878; font-size: 12px; line-height: 1.4; }
 .orientation-record { max-width: 900px; margin: 0 auto; border: 1px solid #cfd3dc; background: #fff; }
 .orientation-record-header { display: grid; grid-template-columns: 140px 1fr; gap: 25px; align-items: center; padding: 32px 38px; border-bottom: 8px solid var(--navy); }
 .orientation-record-header img { width: 130px; }
 .orientation-record-header span { color: #62697a; font-size: 13px; text-transform: uppercase; }
 .orientation-record-header h1 { margin: 5px 0 2px; font-family: var(--display); font-size: 35px; }
 .orientation-record-header p { margin: 0; }
+.orientation-completion-certificate { text-align: center; background: var(--yellow); }
+.orientation-completion-certificate > p { margin: 0 0 9px; color: var(--navy); font-family: var(--display); font-size: 13px; text-transform: uppercase; }
+.orientation-completion-certificate h2 { max-width: 690px; margin: 0 auto 25px; font-size: 29px; line-height: 1.25; }
+.orientation-completion-certificate h2 span { color: #9c251c; }
+.orientation-completion-certificate > div { display: flex; gap: 42px; justify-content: center; }
+.orientation-completion-certificate > div > span { display: grid; gap: 4px; color: #666b77; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+.orientation-completion-certificate strong { color: var(--navy); font-size: 15px; text-transform: none; }
 .orientation-record-details, .orientation-record-results { display: grid; grid-template-columns: repeat(4, 1fr); }
 .orientation-record-details { border-bottom: 1px solid #d9dce3; }
 .orientation-record-results { border-bottom: 5px solid var(--green); background: #edf7f0; }
@@ -826,7 +839,7 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
 .orientation-record > section:not(.orientation-record-details):not(.orientation-record-results) { padding: 28px 38px; }
 .orientation-record h2 { margin: 0 0 17px; font-family: var(--display); font-size: 23px; }
 .orientation-record-culture > div { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 22px; }
-.orientation-record-culture article { display: flex; gap: 12px; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #dfe2e7; }
+.orientation-record-culture article { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid #dfe2e7; }
 .orientation-record-culture strong { font-size: 13px; }
 .orientation-record-culture span { color: #5e6574; font-size: 11px; text-align: right; }
 .orientation-record-policies table { width: 100%; border-collapse: collapse; }
@@ -846,6 +859,8 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
   .orientation-stepper > div { grid-template-columns: 1fr; gap: 3px; padding: 13px; text-align: center; }
   .orientation-stepper span { grid-row: auto; }
   .orientation-learning-pane { padding: 0 34px; }
+  .orientation-summary-actions { grid-template-columns: 1fr 1fr; }
+  .orientation-summary-status { grid-column: 1 / -1; grid-row: 1; }
   .orientation-record-details, .orientation-record-results { grid-template-columns: 1fr 1fr; }
   .orientation-record-details > div:nth-child(2n), .orientation-record-results > div:nth-child(2n) { border-right: 0; }
 }
@@ -872,8 +887,8 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
   .orientation-module-content h2, .orientation-policy-content h2, .orientation-assessment-prompt h2 { font-size: 35px; }
   .orientation-module-content .lead, .orientation-policy-content .lead { font-size: 17px; }
   .orientation-module-points { grid-template-columns: 1fr; }
-  .orientation-module-check { padding: 25px 18px; }
-  .orientation-module-check h3 { font-size: 22px; }
+  .orientation-module-check, .orientation-policy-check { padding: 25px 18px; }
+  .orientation-module-check h3, .orientation-policy-check > h3 { font-size: 22px; }
   .orientation-answer { grid-template-columns: 34px 1fr; padding-right: 11px; }
   .orientation-answer > span { width: 32px; height: 32px; }
   .orientation-answer strong { font-size: 13px; }
@@ -881,11 +896,13 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
   .orientation-pane-actions button { padding-inline: 12px; font-size: 13px; }
   .orientation-pane-actions > span { display: none; }
   .orientation-summary { padding: 20px 10px 35px; }
-  .orientation-summary-actions { gap: 10px; }
+  .orientation-summary-actions { gap: 12px; }
   .orientation-summary-actions button { padding-inline: 10px; font-size: 12px; }
   .orientation-record-header { grid-template-columns: 80px 1fr; gap: 15px; padding: 24px 18px; }
   .orientation-record-header img { width: 78px; }
   .orientation-record-header h1 { font-size: 25px; }
+  .orientation-completion-certificate h2 { font-size: 24px; }
+  .orientation-completion-certificate > div { align-items: center; flex-direction: column; gap: 14px; }
   .orientation-record-details, .orientation-record-results { grid-template-columns: 1fr; }
   .orientation-record-details > div, .orientation-record-results > div { border-right: 0; border-bottom: 1px solid #d9dce3; }
   .orientation-record > section:not(.orientation-record-details):not(.orientation-record-results) { padding: 24px 18px; }
@@ -957,6 +974,12 @@ body[data-current-page="orientation"] .guide-hero img { width: min(390px, 30vw);
   body.printing-orientation-record .orientation-record-header span { font-size: 7.5pt; }
   body.printing-orientation-record .orientation-record-header h1 { margin: 1mm 0; font-family: Arial, Helvetica, sans-serif; font-size: 20pt; }
   body.printing-orientation-record .orientation-record-header p { font-size: 9pt; }
+  body.printing-orientation-record .orientation-completion-certificate { padding: 8mm 10mm !important; border-bottom: 1pt solid #d9dce3; }
+  body.printing-orientation-record .orientation-completion-certificate > p { margin-bottom: 2mm; font-size: 8pt; }
+  body.printing-orientation-record .orientation-completion-certificate h2 { max-width: 150mm; margin-bottom: 5mm; font-family: Arial, Helvetica, sans-serif; font-size: 17pt; }
+  body.printing-orientation-record .orientation-completion-certificate > div { flex-direction: row; gap: 15mm; }
+  body.printing-orientation-record .orientation-completion-certificate > div > span { font-size: 7pt; }
+  body.printing-orientation-record .orientation-completion-certificate strong { font-size: 10pt; }
   body.printing-orientation-record .orientation-record-details,
   body.printing-orientation-record .orientation-record-results { grid-template-columns: repeat(4, 1fr); }
   body.printing-orientation-record .orientation-record-details > div,

@@ -164,12 +164,40 @@ const orientationAssessmentQuestions = orientationAssessmentPolicies.map((policy
   policyQuizQuestions.find((question) => question.policy === policyId)
 ).filter(Boolean);
 
+const orientationPolicyQuestions = policies.map((policy) =>
+  policyQuizQuestions.find((question) => question.policy === policy.id)
+);
+
 const orientationRoot = document.querySelector('.orientation-page');
 const orientationStorageKey = 'gardner-employee-orientation-v1';
 
+function orientationShuffle(values) {
+  const shuffled = [...values];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+  return shuffled;
+}
+
+function orientationBuildAnswerOrders(items) {
+  const correctSlots = orientationShuffle(items.map((_, index) => index % 3));
+  return items.map((item, itemIndex) => {
+    const order = new Array(item.answers.length);
+    const correctSlot = correctSlots[itemIndex] % item.answers.length;
+    const incorrectAnswers = orientationShuffle(item.answers.map((_, index) => index).filter((index) => index !== item.correct));
+    order[correctSlot] = item.correct;
+    let incorrectIndex = 0;
+    for (let slot = 0; slot < order.length; slot += 1) {
+      if (slot !== correctSlot) order[slot] = incorrectAnswers[incorrectIndex++];
+    }
+    return order;
+  });
+}
+
 function orientationNewState(profile) {
   return {
-    version: 1,
+    version: 2,
     profile,
     startedAt: new Date().toISOString(),
     completedAt: null,
@@ -178,15 +206,33 @@ function orientationNewState(profile) {
     cultureAnswers: {},
     policyIndex: 0,
     policyReviews: {},
+    policyAnswers: {},
     assessmentIndex: 0,
-    assessmentAnswers: {}
+    assessmentAnswers: {},
+    answerOrders: {
+      culture: orientationBuildAnswerOrders(orientationModules),
+      policy: orientationBuildAnswerOrders(orientationPolicyQuestions),
+      assessment: orientationBuildAnswerOrders(orientationAssessmentQuestions)
+    }
   };
 }
 
 function orientationLoadState() {
   try {
     const saved = JSON.parse(localStorage.getItem(orientationStorageKey));
-    return saved?.version === 1 && saved.profile ? saved : null;
+    if (!saved?.version || !saved.profile || ![1, 2].includes(saved.version)) return null;
+    if (saved.version === 1) {
+      saved.version = 2;
+      saved.completedAt = null;
+      saved.stage = 'policies';
+      saved.policyIndex = 0;
+    }
+    saved.policyAnswers ||= {};
+    saved.answerOrders ||= {};
+    saved.answerOrders.culture ||= orientationBuildAnswerOrders(orientationModules);
+    saved.answerOrders.policy ||= orientationBuildAnswerOrders(orientationPolicyQuestions);
+    saved.answerOrders.assessment ||= orientationBuildAnswerOrders(orientationAssessmentQuestions);
+    return saved;
   } catch {
     return null;
   }
@@ -256,20 +302,20 @@ if (orientationRoot) {
     progress.querySelector('span').style.width = `${total / (orientationModules.length + policies.length + orientationAssessmentQuestions.length) * 100}%`;
   }
 
-  function orientationAnswerButtons(container, item, savedAnswer, handler) {
+  function orientationAnswerButtons(container, item, savedAnswer, answerOrder, handler) {
     container.replaceChildren();
-    item.answers.forEach((answer, index) => {
+    answerOrder.forEach((originalIndex, displayIndex) => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'orientation-answer';
-      button.innerHTML = `<span>${String.fromCharCode(65 + index)}</span><strong></strong>`;
-      button.querySelector('strong').textContent = answer;
+      button.innerHTML = `<span>${String.fromCharCode(65 + displayIndex)}</span><strong></strong>`;
+      button.querySelector('strong').textContent = item.answers[originalIndex];
       if (savedAnswer) {
         button.disabled = true;
-        if (index === item.correct) button.classList.add('is-correct');
-        if (index === savedAnswer.selected && !savedAnswer.correct) button.classList.add('is-incorrect');
+        if (originalIndex === item.correct) button.classList.add('is-correct');
+        if (originalIndex === savedAnswer.selected && !savedAnswer.correct) button.classList.add('is-incorrect');
       } else {
-        button.addEventListener('click', () => handler(index));
+        button.addEventListener('click', () => handler(originalIndex));
       }
       container.append(button);
     });
@@ -303,7 +349,7 @@ if (orientationRoot) {
 
     const answers = orientationRoot.querySelector('.orientation-module-answers');
     const feedback = orientationRoot.querySelector('.orientation-module-feedback');
-    orientationAnswerButtons(answers, module, saved, (selected) => {
+    orientationAnswerButtons(answers, module, saved, orientationState.answerOrders.culture[orientationState.cultureIndex], (selected) => {
       const correct = selected === module.correct;
       orientationState.cultureAnswers[module.id] = { selected, correct, reviewedAt: new Date().toISOString() };
       orientationSaveState(orientationState);
@@ -346,6 +392,8 @@ if (orientationRoot) {
   function orientationRenderPolicy() {
     orientationState.stage = 'policies';
     const policy = policies[orientationState.policyIndex];
+    const question = orientationPolicyQuestions[orientationState.policyIndex];
+    const savedAnswer = orientationState.policyAnswers[policy.id];
     const reviewedAt = orientationState.policyReviews[policy.id];
     orientationRoot.querySelector('.orientation-policy-position').textContent = `${String(orientationState.policyIndex + 1).padStart(2, '0')} / ${policies.length}`;
     orientationRoot.querySelector('.orientation-policy-source').href = `?policy=${policy.id}`;
@@ -364,6 +412,26 @@ if (orientationRoot) {
       body.append(section);
     });
 
+    orientationRoot.querySelector('.orientation-policy-scenario').textContent = question.scenario;
+    orientationRoot.querySelector('.orientation-policy-question').textContent = question.question;
+    const answers = orientationRoot.querySelector('.orientation-policy-answers');
+    const feedback = orientationRoot.querySelector('.orientation-policy-feedback');
+    orientationAnswerButtons(answers, question, savedAnswer, orientationState.answerOrders.policy[orientationState.policyIndex], (selected) => {
+      orientationState.policyAnswers[policy.id] = {
+        selected,
+        correct: selected === question.correct,
+        answeredAt: new Date().toISOString()
+      };
+      orientationSaveState(orientationState);
+      orientationRenderPolicy();
+      feedback.focus();
+    });
+    feedback.hidden = !savedAnswer;
+    feedback.classList.toggle('is-incorrect', savedAnswer && !savedAnswer.correct);
+    feedback.querySelector('strong').textContent = savedAnswer ? (savedAnswer.correct ? 'Best response' : 'Review this policy point') : '';
+    feedback.querySelector('h3').textContent = savedAnswer ? question.title : '';
+    feedback.querySelector('p').textContent = savedAnswer ? question.explanation : '';
+
     const checkbox = orientationRoot.querySelector('.orientation-policy-checkbox');
     checkbox.checked = Boolean(reviewedAt);
     checkbox.disabled = Boolean(reviewedAt);
@@ -373,10 +441,10 @@ if (orientationRoot) {
     const previous = orientationRoot.querySelector('.orientation-policy-previous');
     previous.disabled = false;
     const next = orientationRoot.querySelector('.orientation-policy-next');
-    next.disabled = !reviewedAt && !checkbox.checked;
+    next.disabled = !savedAnswer || (!reviewedAt && !checkbox.checked);
     next.innerHTML = reviewedAt
-      ? `${orientationState.policyIndex === policies.length - 1 ? 'Begin scenarios' : 'Continue'} <i data-lucide="arrow-right" aria-hidden="true"></i>`
-      : `Record review & continue <i data-lucide="arrow-right" aria-hidden="true"></i>`;
+      ? `${savedAnswer ? (orientationState.policyIndex === policies.length - 1 ? 'Begin scenarios' : 'Continue') : 'Complete policy check'} <i data-lucide="arrow-right" aria-hidden="true"></i>`
+      : `Record check & review <i data-lucide="arrow-right" aria-hidden="true"></i>`;
     orientationSetVisiblePane(policyPane);
     orientationUpdateProgress();
     lucide.createIcons();
@@ -400,7 +468,7 @@ if (orientationRoot) {
     orientationRoot.querySelector('.orientation-assessment-question').textContent = item.question;
     const answers = orientationRoot.querySelector('.orientation-assessment-answers');
     const feedback = orientationRoot.querySelector('.orientation-assessment-feedback');
-    orientationAnswerButtons(answers, item, saved, (selected) => {
+    orientationAnswerButtons(answers, item, saved, orientationState.answerOrders.assessment[index], (selected) => {
       orientationState.assessmentAnswers[index] = {
         selected,
         correct: selected === item.correct,
@@ -440,6 +508,7 @@ if (orientationRoot) {
     orientationState.stage = 'summary';
     if (!orientationState.completedAt) orientationState.completedAt = new Date().toISOString();
     orientationSaveState(orientationState);
+    const durationMinutes = orientationDuration(orientationState);
     const details = orientationRoot.querySelector('.orientation-record-details');
     details.replaceChildren(
       orientationDetailItem('Employee', orientationState.profile.fullName),
@@ -449,17 +518,24 @@ if (orientationRoot) {
       orientationDetailItem('Started', orientationFormatDate(orientationState.startedAt)),
       orientationDetailItem('Completed', orientationFormatDate(orientationState.completedAt)),
       orientationDetailItem('Facilitator', orientationState.profile.facilitator || 'Not recorded'),
-      orientationDetailItem('Duration', `${orientationDuration(orientationState)} minutes`)
+      orientationDetailItem('Duration', `${durationMinutes} ${durationMinutes === 1 ? 'minute' : 'minutes'}`)
     );
 
     const cultureScore = Object.values(orientationState.cultureAnswers).filter((answer) => answer.correct).length;
+    const policyScore = Object.values(orientationState.policyAnswers).filter((answer) => answer.correct).length;
     const assessmentScore = orientationAssessmentScore();
+    const totalScore = cultureScore + policyScore + assessmentScore;
+    const totalQuestions = orientationModules.length + policies.length + orientationAssessmentQuestions.length;
+    const scorePercent = Math.round(totalScore / totalQuestions * 100);
+    orientationRoot.querySelector('.orientation-certificate-name').textContent = orientationState.profile.fullName;
+    orientationRoot.querySelector('.orientation-certificate-date').textContent = orientationFormatDate(orientationState.completedAt, false);
+    orientationRoot.querySelector('.orientation-certificate-score').textContent = `${totalScore} / ${totalQuestions} (${scorePercent}%)`;
     const results = orientationRoot.querySelector('.orientation-record-results');
     results.replaceChildren(
       orientationDetailItem('Culture checks', `${cultureScore} / ${orientationModules.length}`),
-      orientationDetailItem('Policies reviewed', `${Object.keys(orientationState.policyReviews).length} / ${policies.length}`),
+      orientationDetailItem('Policy checks', `${policyScore} / ${policies.length}`),
       orientationDetailItem('Scenario score', `${assessmentScore} / ${orientationAssessmentQuestions.length}`),
-      orientationDetailItem('Overall knowledge score', `${cultureScore + assessmentScore} / ${orientationModules.length + orientationAssessmentQuestions.length}`)
+      orientationDetailItem('Overall knowledge score', `${totalScore} / ${totalQuestions} (${scorePercent}%)`)
     );
 
     const cultureList = orientationRoot.querySelector('.orientation-record-culture > div');
@@ -480,15 +556,23 @@ if (orientationRoot) {
     policies.forEach((policy) => {
       const row = document.createElement('tr');
       const title = document.createElement('td');
+      const check = document.createElement('td');
       const date = document.createElement('td');
       title.innerHTML = `<strong>${policy.code}</strong><span></span>`;
       title.querySelector('span').textContent = policy.title;
+      const policyAnswer = orientationState.policyAnswers[policy.id];
+      check.textContent = policyAnswer ? (policyAnswer.correct ? 'Correct' : 'Review recommended') : 'Not completed';
       date.textContent = orientationFormatDate(orientationState.policyReviews[policy.id]);
-      row.append(title, date);
+      row.append(title, check, date);
       policyRows.append(row);
     });
 
-    const missed = orientationAssessmentQuestions.filter((item, index) => !orientationState.assessmentAnswers[index]?.correct);
+    const missedPolicies = orientationPolicyQuestions
+      .map((item, index) => ({ item, policy: policies[index] }))
+      .filter(({ policy }) => !orientationState.policyAnswers[policy.id]?.correct)
+      .map(({ item }) => item);
+    const missedScenarios = orientationAssessmentQuestions.filter((item, index) => !orientationState.assessmentAnswers[index]?.correct);
+    const missed = [...missedPolicies, ...missedScenarios];
     const review = orientationRoot.querySelector('.orientation-record-review');
     const reviewList = review.querySelector('ul');
     review.hidden = missed.length === 0;
@@ -573,7 +657,8 @@ if (orientationRoot) {
   });
 
   orientationRoot.querySelector('.orientation-policy-checkbox').addEventListener('change', (event) => {
-    orientationRoot.querySelector('.orientation-policy-next').disabled = !event.target.checked;
+    const policy = policies[orientationState.policyIndex];
+    orientationRoot.querySelector('.orientation-policy-next').disabled = !event.target.checked || !orientationState.policyAnswers[policy.id];
   });
   orientationRoot.querySelector('.orientation-policy-previous').addEventListener('click', () => {
     if (orientationState.policyIndex === 0) {
@@ -590,6 +675,7 @@ if (orientationRoot) {
   orientationRoot.querySelector('.orientation-policy-next').addEventListener('click', () => {
     const policy = policies[orientationState.policyIndex];
     const checkbox = orientationRoot.querySelector('.orientation-policy-checkbox');
+    if (!orientationState.policyAnswers[policy.id]) return;
     if (!orientationState.policyReviews[policy.id]) {
       if (!checkbox.checked) return;
       orientationState.policyReviews[policy.id] = new Date().toISOString();
